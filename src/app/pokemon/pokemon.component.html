@@ -1,0 +1,36 @@
+<div mat-dialog-content *ngIf="pokemon_info">
+    <div class="12 d-flex justify-content-end">
+        <mat-icon (click)="onNoClick()">close</mat-icon>
+    </div>
+    <div class="row">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" class="col-6 img-fluid">
+        <h5 class="col-3 my-auto">{{pokemon_info['name']}}</h5>
+    </div>
+    <hr>
+    <div class="pokemon_info">
+        <div class="row">
+            <h5 class="col-2"> Tipo: </h5>
+            <div class="row">
+                <div class="col-2" *ngFor="let info of pokemon_info['types']" >
+                    <img src="../../assets/images/{{info['type']['name']}}.png" >
+                </div>                
+            </div>
+        </div>
+        <div>
+            <h5 class="col-12 m-0"> Fortaleza: </h5>
+            <div class="row mx-3">
+                <div class="col-2" *ngFor="let fortaleza of fortalezas" >
+                    <img src="../../assets/images/{{fortaleza}}.png" >
+                </div>   
+            </div>
+        </div>
+        <div>
+            <h5 class="col-12 m-0"> Debilidad: </h5>
+            <div class="row mx-3">
+                <div class="col-2" *ngFor="let debilidad of debilidades" >
+                    <img src="../../assets/images/{{debilidad}}.png" >
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

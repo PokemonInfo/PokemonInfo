@@ -1,0 +1,7 @@
+a {
+    transition: background-color .5s;
+  }
+  
+  a:hover {
+    background: gold;
+  }
