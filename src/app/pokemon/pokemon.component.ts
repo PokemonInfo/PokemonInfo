@@ -13,9 +13,34 @@ import {MatDialogRef} from '@angular/material/dialog';
 export class PokemonComponent implements OnInit {
 
   pokemon_info : any[];
-  debilidades = new Set();
-  fortalezas = new Set();
+  debilidades = [];
+  resistencias = [];
   cantidadDeTipo = 0;
+
+  tableType:any[][]= [
+    [0,"normal","fire","water","grass","electric","ice","fighting","poison","ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"],
+    ["normal"  ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,3 ,0 ,0 ,1 ,0 ],
+    ["fire"    ,0 ,1 ,1 ,2 ,0 ,2 ,0 ,0 ,0 ,0 ,0 ,2 ,1 ,0 ,1 ,0 ,2 ,0 ],
+    ["water"   ,0 ,2 ,1 ,1 ,0 ,0 ,0 ,0 ,2 ,0 ,0 ,0 ,2 ,0 ,1 ,0 ,0 ,0 ],
+    ["grass"   ,0 ,1 ,2 ,1 ,0 ,0 ,0 ,1 ,2 ,1 ,0 ,1 ,2 ,0 ,1 ,0 ,1 ,0 ],
+    ["electric",0 ,0 ,2 ,1 ,1 ,0 ,0 ,0 ,3 ,2 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ],
+    ["ice"     ,0 ,1 ,1 ,2 ,0 ,1 ,0 ,0 ,2 ,2 ,0 ,0 ,0 ,0 ,2 ,0 ,1 ,0 ],
+    ["fighting",2 ,0 ,0 ,0 ,0 ,2 ,0 ,1 ,0 ,1 ,1 ,1 ,2 ,3 ,0 ,2 ,2 ,1 ],
+    ["poison"  ,0 ,0 ,0 ,2 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,3 ,2 ],
+    ["ground"  ,0 ,2 ,0 ,1 ,2 ,0 ,0 ,2 ,0 ,3 ,0 ,1 ,2 ,0 ,0 ,0 ,2 ,0 ],
+    ["flying"  ,0 ,0 ,0 ,2 ,1 ,0 ,2 ,0 ,0 ,0 ,0 ,2 ,1 ,0 ,0 ,0 ,1 ,0 ],
+    ["psychic" ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,2 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,3 ,1 ,0 ],
+    ["bug"     ,0 ,1 ,0 ,2 ,0 ,0 ,1 ,1 ,0 ,1 ,2 ,0 ,0 ,1 ,0 ,2 ,1 ,1 ],
+    ["rock"    ,0 ,2 ,0 ,0 ,0 ,2 ,1 ,0 ,1 ,2 ,0 ,2 ,0 ,0 ,0 ,0 ,1 ,0 ],
+    ["ghost"   ,3 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,0 ,0 ,2 ,0 ,1 ,0 ,0 ],
+    ["dragon"  ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,0 ,1 ,3 ],
+    ["dark"    ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,2 ,0 ,0 ,2 ,0 ,1 ,0 ,1 ],
+    ["steel"   ,0 ,1 ,1 ,0 ,1 ,2 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,0 ,0 ,0 ,1 ,2 ],
+    ["fairy"   ,0 ,1 ,0 ,0 ,0 ,0 ,2 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,2 ,1 ,0 ],
+  ];
+
+
+
 
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
     public dialogRef: MatDialogRef<PokemonComponent>) { }
@@ -25,15 +50,12 @@ export class PokemonComponent implements OnInit {
   }
 
   public getPokemonInfo(){
+    this.debilidades = [];
+    this.resistencias  = [];
     this.pokemonApi.getPokemon().subscribe(data =>{
       this.pokemon_info = data;
       this.cantidadDeTipo = this.pokemon_info['types'].length;
-      this.pokemon_info['types'].forEach(element => {
-        this.pokemonApi.getTypes(element['type']['name']).subscribe(data=>{
-          console.log(data);
-          this.cargarAtributos(data);
-        })
-      });
+      this.getDebilidadesyResistencias(this.pokemon_info['types']);
     });
   }
 
@@ -41,27 +63,103 @@ export class PokemonComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public cargarAtributos(data){
-    if(this.cantidadDeTipo == 1){
-      this.cargarDebildadUnTipo(data['damage_relations']);
-      this.cargarFortalezaUnTipo(data['damage_relations']);
+  private getDebilidadesyResistencias(types){
+    let duplicado;
+    let auxDebilidades = [];
+    let debilidades = [];
+    let resistencias = [];
+
+    types.forEach(type => {
+      debilidades = debilidades.concat(this.getDebilidades(type['type']['name']));
+      resistencias = resistencias.concat(this.getresistencias(type['type']['name']));
+    });
+
+    debilidades.sort().forEach(element => {
+      duplicado = false;
+      resistencias.sort().forEach(element2 => {
+        if (element == element2) {
+          duplicado = true;
+        }
+      })
+      if (duplicado == false){
+        auxDebilidades.push(element);
+      }else{
+        resistencias.splice(resistencias.indexOf(element),1);
+      }
+    })
+
+    this.debilidades  = this.agruparTipos(auxDebilidades);
+    this.resistencias = this.agruparTipos(resistencias);   
+    
+    return;
+  }
+
+  private getDebilidades(type:string){
+    return this.eficaciaDefensor(type,2);
+  }
+
+  private getresistencias(type:string){
+    return (this.eficaciaDefensor(type,1).concat(this.eficaciaDefensor(type,3)));
+  }
+
+  private getDañoDoble(type:string){
+    return this.eficaciaAtacante(type,2);
+  }
+
+  private getDañoMedio(type:string){
+    return this.eficaciaAtacante(type,1).concat(this.eficaciaAtacante(type,3))
+  }
+
+  private eficaciaDefensor(type:string,eficacia) {
+    let arreglo = [];
+    for (let i = 0 ; i < this.tableType.length; i++) {
+      if (this.tableType[0][i] == type) {
+        for (let j = 1 ; j < this.tableType.length ; j++) {
+          if (this.tableType[j][i] == eficacia){
+            arreglo.push(this.tableType[j][0]);
+            if(eficacia == 3){
+              arreglo.push(this.tableType[j][0]);
+            }
+          }
+        }
+      }
     }
-
+    return arreglo;
   }
 
-  public cargarDebildadUnTipo(debilidades){
-    debilidades['double_damage_from'].forEach(element => {
-      this.debilidades.add(element['name']);
-    });
-    debilidades['half_damage_to'].forEach(element => {
-      this.debilidades.add(element['name']);
-    });
+  private eficaciaAtacante (type:string,eficacia) {
+    let arreglo = [];
+    for (let i = 0 ; i < this.tableType.length; i++) {
+      /*console.log( this.tableType[i][0] + "==" + type);*/
+      if (this.tableType[i][0] == type) {   
+        for (let j = 1 ; j < this.tableType.length ; j++) {
+          if (this.tableType[i][j] == eficacia){
+            arreglo.push(this.tableType[0][j]);
+            if (eficacia == 3){
+              arreglo.push(this.tableType[0][j]);
+            }
+          }
+        }
+      }
+    }
+    return arreglo;
   }
 
-  public cargarFortalezaUnTipo(fortalezas){
-    fortalezas['double_damage_to'].forEach(element => {
-      this.fortalezas.add(element['name']);
-    });
+  private agruparTipos(arreglo){
+    let eficacias = [];
+    arreglo.forEach(element => {
+      if (eficacias.length == 0){
+        eficacias.push({'type': element, 'count': 1})
+      }else{
+        if(eficacias[eficacias.length-1]['type'] == element ){
+          eficacias[eficacias.length-1]['count'] += 1;
+        }
+        else{
+          eficacias.push({'type': element, 'count': 1})
+        }
+      }
+    }); 
+    return eficacias;   
   }
-
+  
 }
