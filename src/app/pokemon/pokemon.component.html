@@ -17,20 +17,25 @@
             </div>
         </div>
         <div>
-            <h5 class="col-12 m-0"> Fortaleza: </h5>
+            <h5 class="col-12 m-0"> Resistencias </h5>
             <div class="row mx-3">
-                <div class="col-2" *ngFor="let fortaleza of fortalezas" >
-                    <img src="../../assets/images/{{fortaleza}}.png" >
+                <div class="col-12" *ngFor="let resistencia of resistencias" >
+                    <div class="row ">
+                        <p class="">{{resistencia['count']}}</p>
+                        <img class="col-6" src="../../assets/images/{{resistencia['type']}}.png" >
+                    </div>
                 </div>   
             </div>
         </div>
         <div>
-            <h5 class="col-12 m-0"> Debilidad: </h5>
+            <h5 class="col-12 m-0"> Debilidad </h5>
             <div class="row mx-3">
                 <div class="col-2" *ngFor="let debilidad of debilidades" >
-                    <img src="../../assets/images/{{debilidad}}.png" >
+                    {{debilidad['count']}}
+                    <img src="../../assets/images/{{debilidad['type']}}.png" >
                 </div>  
             </div>
         </div>
     </div>
 </div>
+
