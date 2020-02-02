@@ -22,7 +22,7 @@ export class PokemonApiService {
   }
 
   getPokemon(): Observable <any>{
-    var url = URL_POKEMON+this.id+'/';
+    var url = URL_POKEMON+this.id;
     return this.httpClient.get(url);
   }
 

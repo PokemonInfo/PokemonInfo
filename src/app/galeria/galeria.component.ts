@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonApiService } from './../pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
-import {PokemonComponent} from './../pokemon/pokemon.component';
-import {MatDialog} from '@angular/material/dialog';
-import * as $ from "jquery";
+import { PokemonComponent } from './../pokemon/pokemon.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-galeria',
@@ -12,6 +11,7 @@ import * as $ from "jquery";
 })
 export class GaleriaComponent implements OnInit {
 
+  pokemons_borrador: any[];
   pokemons : any[];
   imaga_pokemon : any[];
   offset = 0;
@@ -30,21 +30,40 @@ export class GaleriaComponent implements OnInit {
     this.offset = offset;
     this.limit = limit;
     this.pokemonApi.getPokemons(this.offset, limit).subscribe(data =>{
-      if(this.nombrePokemon === ''){
-        this.pokemons = data.results;
-      }  
+        this.pokemons_borrador = data.results;
+        var i=0;
+        var id=offset;
+        this.pokemons = [];
+        this.pokemons_borrador.forEach(element => {
+          this.pokemons[i] = {'name':element['name'],'url':element['url'],'id':id+1};
+          i++;
+          id++;
+        });
+        this.pokemons_borrador = this.pokemons;
     });
+    
+
   }
 
-  openDialog(id): void {
+  public openDialog(id): void {
     this.pokemonApi.cargarId(id);
     const dialogRef = this.dialog.open(PokemonComponent, {
-      width: '300px',
-      height: '400px',
+      width: '600px',
+      height: '600px',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
 
+  public buscarPokemon(){
+    var pokemons = [];
+    this.pokemons = [];
+    this.pokemons_borrador.forEach(element => {
+      if(element['name'].substr(0,this.nombrePokemon.length) == this.nombrePokemon.toLowerCase()){
+        pokemons.push(element);
+      }
+    });
+    this.pokemons = pokemons;
+  }
 }

@@ -1,26 +1,30 @@
-<nav class="row navbar navbar-dark bg-primary">
-    <button class="col-2" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" class="bg-primary">
-        <button mat-menu-item (click)="getPokemons(0, 151)">Generacion 1</button>
-        <button mat-menu-item (click)="getPokemons(151, 100)">Generacion 2</button>
-        <button mat-menu-item (click)="getPokemons(251, 136)">Generacion 3</button>
-        <button mat-menu-item (click)="getPokemons(387, 107)">Generacion 4</button>
-        <button mat-menu-item (click)="getPokemons(492, 156)">Generacion 5</button>
-    </mat-menu>
-    <div class="col-8">
-        <form class="row form-inline">
-            <input [(ngModel)]="nombrePokemon" (keyup)="getPokemons(offset, limit)" class="search-input" class="col-7 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
-            <button class="col-4 btn btn-outline-light my-2" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
-<div class="row" >
-    <a class="col-4 justify-content-center text-center" *ngFor="let pokemon of pokemons; let i=index" >
-        <div (click)="openDialog(i+1+offset)">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{i+1+offset}}.png" class="col-12 img-fluid">
-            <p clase="text-center">{{pokemon['name']}}</p>
+<div class="menu bg-primary">
+    <nav class="navbar navbar-dark">
+        <button class="col-1 m-0 p-0" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="bg-primary">
+            <button mat-menu-item (click)="getPokemons(0, 151)">Generacion 1</button>
+            <button mat-menu-item (click)="getPokemons(151, 100)">Generacion 2</button>
+            <button mat-menu-item (click)="getPokemons(251, 135)">Generacion 3</button>
+            <button mat-menu-item (click)="getPokemons(385, 107)">Generacion 4</button>
+            <button mat-menu-item (click)="getPokemons(492, 156)">Generacion 5</button>
+        </mat-menu>
+        <div class="col-8 col-md-4">
+            <form class="row form-inline">
+                <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" class="search-input" class="col-7 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
+                <button class="col-4 btn btn-outline-light my-2" type="submit">Search</button>
+            </form>
         </div>
-    </a>
+    </nav>
+</div>
+<div class="xxx col-12">
+    <div class="row galeria">
+        <a class="col-4 col-md-2 justify-content-center text-center" *ngFor="let pokemon of pokemons; let i=index" >
+            <div (click)="openDialog(pokemon['id'])">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon['id']}}.png" class="col-12 img-fluid">
+                <p clase="text-center">{{pokemon['name']}}</p>
+            </div>
+        </a>
+    </div>
 </div>

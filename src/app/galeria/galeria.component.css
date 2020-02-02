@@ -1,7 +1,41 @@
 a {
-    transition: background-color .5s;
-  }
+  transition: .5s;
+}
   
-  a:hover {
-    background: gold;
+a:hover {
+  background: gold;
+}
+
+.xxx .row{
+}
+
+.galeria{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 70px;
+}
+
+.menu{
+  position:fixed;
+  width: 100%;
+	top: 0;
+  z-index: 1;
+}
+
+/* Smartphones (portrait and landscape) ———– */
+@media only screen and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  div nav{
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 23px;
+    margin: 0;
   }
+
+  .galeria{
+    top: 90px;
+  }
+
+}
+
