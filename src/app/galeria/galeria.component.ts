@@ -49,7 +49,7 @@ export class GaleriaComponent implements OnInit {
     /*this.pokemons_borrador = this.pokemons;*/
     console.log(data);
     });
-  }
+  } 
 
   public openDialog(id): void {
     this.pokemonApi.cargarId(id);
