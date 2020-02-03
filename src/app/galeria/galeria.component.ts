@@ -23,26 +23,32 @@ export class GaleriaComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getPokemons(0, 151); 
+    this.getPokemons(1); 
   }
 
-  public getPokemons(offset, limit){
-    this.offset = offset;
-    this.limit = limit;
-    this.pokemonApi.getPokemons(this.offset, limit).subscribe(data =>{
-        this.pokemons_borrador = data.results;
-        var i=0;
-        var id=offset;
-        this.pokemons = [];
+  public getPokemons(generacion){
+    this.pokemonApi.getPokemons(generacion).subscribe(data =>{
+        /*this.pokemons_borrador = data.results;
         this.pokemons_borrador.forEach(element => {
           this.pokemons[i] = {'name':element['name'],'url':element['url'],'id':id+1};
           i++;
           id++;
         });
         this.pokemons_borrador = this.pokemons;
+    });*/
+    let i = 0;
+    data['pokemon_species'].forEach(element => {
+      element.forEach(element => {
+        this.pokemons.push({
+          'name':element['name'],
+          'url':,
+          'id':,
+        });
+      })   
     });
-    
-
+    /*this.pokemons_borrador = this.pokemons;*/
+    console.log(data);
+    });
   }
 
   public openDialog(id): void {
