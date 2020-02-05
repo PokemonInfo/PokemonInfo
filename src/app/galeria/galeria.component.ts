@@ -41,10 +41,10 @@ export class GaleriaComponent implements OnInit {
       element.forEach(element => {
         this.pokemons.push({
           'name':element['name'],
-          'url':,
-          'id':,
+          /*'url':,
+          'id':,*/
         });
-      })   
+      }); 
     });
     /*this.pokemons_borrador = this.pokemons;*/
     console.log(data);
