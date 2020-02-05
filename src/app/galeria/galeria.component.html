@@ -4,11 +4,11 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="bg-primary">
-            <button mat-menu-item (click)="getPokemons(0, 151)">Generacion 1</button>
-            <button mat-menu-item (click)="getPokemons(151, 100)">Generacion 2</button>
-            <button mat-menu-item (click)="getPokemons(251, 135)">Generacion 3</button>
-            <button mat-menu-item (click)="getPokemons(385, 107)">Generacion 4</button>
-            <button mat-menu-item (click)="getPokemons(492, 156)">Generacion 5</button>
+            <button mat-menu-item (click)="getPokemons(1)">Generacion 1</button>
+            <button mat-menu-item (click)="getPokemons(2)">Generacion 2</button>
+            <button mat-menu-item (click)="getPokemons(3)">Generacion 3</button>
+            <button mat-menu-item (click)="getPokemons(4)">Generacion 4</button>
+            <button mat-menu-item (click)="getPokemons(5)">Generacion 5</button>
         </mat-menu>
         <div class="col-8 col-md-4">
             <form class="row form-inline">
@@ -18,11 +18,13 @@
         </div>
     </nav>
 </div>
+<<<<<<< HEAD
 <div class="row galeria">
-    <a class="col-4 col-md-2 justify-content-start text-center" *ngFor="let pokemon of pokemons; let i=index" >
+    <a class="col-4 col-md-2 justify-content-start text-center" *ngFor="let pokemon of pokemons; " >
         <div (click)="openDialog(pokemon['id'])">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon['id']}}.png" >
+            <img src="{{pokemon['img']}}" class="col-12 img-fluid">
             <p clase="text-center">{{pokemon['name']}}</p>
         </div>
     </a>
+
 </div>

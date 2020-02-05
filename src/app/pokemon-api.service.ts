@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from "rxjs/operators";
 
-const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/pokemon-form";
+/*const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/pokemon-form";*/
+const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/generation/"
 const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/";
 const URL_TYPES = "https://pokeapi.co/api/v2/type/";
 
@@ -16,13 +17,20 @@ export class PokemonApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPokemons(offset, limit): Observable <any>{
-    var url = URL_LISTAPOKEMONS+'?offset=' + offset + '&limit=' + limit;
+  getPokemons(generacion): Observable <any>{
+    var url = URL_LISTAPOKEMONS + generacion;
     return this.httpClient.get(url);
   }
 
-  getPokemon(): Observable <any>{
-    var url = URL_POKEMON+this.id;
+  getPokemon(idOrName): Observable <any>{
+    if(idOrName === null){
+      idOrName= this.id;
+    }
+    var url = URL_POKEMON+idOrName;
+    return this.httpClient.get(url);
+  }
+
+  getPokemonSpecie(url): Observable <any>{
     return this.httpClient.get(url);
   }
 
