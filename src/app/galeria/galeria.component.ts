@@ -32,19 +32,15 @@ export class GaleriaComponent implements OnInit {
       data =>{
         data['pokemon_species'].forEach(
           element => {
-          this.pokemons.push({'name': element['name']})
+          this.pokemons.push({'name': element['name'],'url': element['url']})
           });
       },
       err => {},
       () =>{
           this.pokemons.forEach(pokemon => {
-            this.pokemonApi.getPokemon(pokemon['name']).subscribe(data =>{
-               pokemon.img = data['sprites']['front_default']
+            this.pokemonApi.getPokemonSpecie(pokemon['url']).subscribe(data =>{
+               pokemon.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data['id'] + ".png" 
                pokemon.id  = data['id']
-               if (pokemon == 'deoxys'){
-                console.log(pokemon)
-               }
-               
               },
               err => {},
               () => {
@@ -62,8 +58,7 @@ export class GaleriaComponent implements OnInit {
           )}
       )}
     )
-    
-    console.log(this.pokemons);
+    this.pokemons_borrador = this.pokemons;
   }
 
   public openDialog(id): void {

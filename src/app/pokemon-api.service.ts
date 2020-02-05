@@ -23,7 +23,14 @@ export class PokemonApiService {
   }
 
   getPokemon(idOrName): Observable <any>{
+    if(idOrName === null){
+      idOrName= this.id;
+    }
     var url = URL_POKEMON+idOrName;
+    return this.httpClient.get(url);
+  }
+
+  getPokemonSpecie(url): Observable <any>{
     return this.httpClient.get(url);
   }
 
