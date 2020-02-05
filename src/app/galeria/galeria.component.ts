@@ -27,12 +27,44 @@ export class GaleriaComponent implements OnInit {
   }
 
   public getPokemons(generacion){
-    this.pokemonApi.getPokemons(generacion).subscribe(data =>{
-      data['pokemon_species'].forEach(element => {
-        this.pokemons.push({'name': element['name']})
-      });
-    });
-  };
+    this.pokemons = [];
+    this.pokemonApi.getPokemons(generacion).subscribe(
+      data =>{
+        data['pokemon_species'].forEach(
+          element => {
+          this.pokemons.push({'name': element['name']})
+          });
+      },
+      err => {},
+      () =>{
+          this.pokemons.forEach(pokemon => {
+            this.pokemonApi.getPokemon(pokemon['name']).subscribe(data =>{
+               pokemon.img = data['sprites']['front_default']
+               pokemon.id  = data['id']
+               if (pokemon == 'deoxys'){
+                console.log(pokemon)
+               }
+               
+              },
+              err => {},
+              () => {
+                this.pokemons.sort(function (a, b) {
+                  if (a.id > b.id) {
+                    return 1;
+                  }
+                  if (a.id < b.id) {
+                    return -1;
+                  }
+                  // a must be equal to b
+                  return 0;
+                })
+            }
+          )}
+      )}
+    )
+    
+    console.log(this.pokemons);
+  }
 
   public openDialog(id): void {
     this.pokemonApi.cargarId(id);
@@ -56,8 +88,6 @@ export class GaleriaComponent implements OnInit {
     this.pokemons = pokemons;
   }
 
-  public getPokemonImg(idOrName) {
-  }
 }
 
   
