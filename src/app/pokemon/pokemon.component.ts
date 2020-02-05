@@ -52,7 +52,7 @@ export class PokemonComponent implements OnInit {
   public getPokemonInfo(){
     this.debilidades = [];
     this.resistencias  = [];
-    this.pokemonApi.getPokemon().subscribe(data =>{
+    this.pokemonApi.getPokemon(1).subscribe(data =>{
       this.pokemon_info = data;
       this.cantidadDeTipo = this.pokemon_info['types'].length;
       this.getDebilidadesyResistencias(this.pokemon_info['types']);

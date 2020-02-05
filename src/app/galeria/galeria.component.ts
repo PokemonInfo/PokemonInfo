@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class GaleriaComponent implements OnInit {
 
   pokemons_borrador: any[];
-  pokemons : any[];
+  pokemons = [];
   imaga_pokemon : any[];
   offset = 0;
   limit = 0;
@@ -28,28 +28,11 @@ export class GaleriaComponent implements OnInit {
 
   public getPokemons(generacion){
     this.pokemonApi.getPokemons(generacion).subscribe(data =>{
-        /*this.pokemons_borrador = data.results;
-        this.pokemons_borrador.forEach(element => {
-          this.pokemons[i] = {'name':element['name'],'url':element['url'],'id':id+1};
-          i++;
-          id++;
-        });
-        this.pokemons_borrador = this.pokemons;
-    });*/
-    let i = 0;
-    data['pokemon_species'].forEach(element => {
-      element.forEach(element => {
-        this.pokemons.push({
-          'name':element['name'],
-          /*'url':,
-          'id':,*/
-        });
-      }); 
+      data['pokemon_species'].forEach(element => {
+        this.pokemons.push({'name': element['name']})
+      });
     });
-    /*this.pokemons_borrador = this.pokemons;*/
-    console.log(data);
-    });
-  } 
+  };
 
   public openDialog(id): void {
     this.pokemonApi.cargarId(id);
@@ -72,4 +55,9 @@ export class GaleriaComponent implements OnInit {
     });
     this.pokemons = pokemons;
   }
+
+  public getPokemonImg(idOrName) {
+  }
 }
+
+  
