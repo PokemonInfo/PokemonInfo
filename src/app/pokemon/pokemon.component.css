@@ -1,6 +1,14 @@
+#pokemon{
+    background-image: url('../../assets/images/background/water.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
 
-.pokemon_info div .row{
-    margin: 0;
+.encabezado{
+    height: 20vh;
 }
 
 hr{

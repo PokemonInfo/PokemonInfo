@@ -39,14 +39,12 @@ export class PokemonComponent implements OnInit {
     ["fairy"   ,0 ,1 ,0 ,0 ,0 ,0 ,2 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,2 ,1 ,0 ],
   ];
 
-
-
-
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
     public dialogRef: MatDialogRef<PokemonComponent>) { }
 
   ngOnInit() {
     this.getPokemonInfo();
+    this.changeBackgroundColor();
   }
 
   public getPokemonInfo(){
@@ -160,6 +158,10 @@ export class PokemonComponent implements OnInit {
       }
     }); 
     return eficacias;   
+  }
+
+  public changeBackgroundColor(){
+    
   }
   
 }
