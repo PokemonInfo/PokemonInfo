@@ -41,8 +41,6 @@ export class GaleriaComponent implements OnInit {
         });
         this.pokemons_borrador = this.pokemons;
     });
-    
-
   }
 
   public openDialog(id): void {
