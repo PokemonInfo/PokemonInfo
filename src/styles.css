@@ -1,11 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Orbitron', sans-serif;}
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 
 .mat-dialog-container{
     background: white !important;
     border-style: solid;
-    border-color: #007bff!important;
     color: black;
+    padding: 0 24px !important;
 }

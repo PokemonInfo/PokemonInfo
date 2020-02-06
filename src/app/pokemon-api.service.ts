@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from "rxjs/operators";
 
 /*const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/pokemon-form";*/
-const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/generation/"
+const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/generation/";
 const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/";
 const URL_TYPES = "https://pokeapi.co/api/v2/type/";
 

@@ -1,9 +1,34 @@
+#pokemon{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
 
-.pokemon_info div .row{
-    margin: 0;
+.encabezado{
+    height: 20vh;
 }
 
 hr{
     background: #007bff!important;
     width: 80%;
+}
+
+/**************************************/
+
+.water{
+    background-color: dodgerblue;
+}
+.fire{
+    background-color: orange; 
+}
+.dark{
+    background-color: dimgray;
+}
+.electric{
+    background-color: darkgoldenrod;
+}
+.fairy{
+    background-color: pink;
 }
