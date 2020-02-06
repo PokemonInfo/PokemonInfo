@@ -26,23 +26,6 @@ export class GaleriaComponent implements OnInit {
     this.getPokemons(1); 
   }
 
-<<<<<<< HEAD
-  public getPokemons(offset, limit){
-    this.offset = offset;
-    this.limit = limit;
-    this.pokemonApi.getPokemons(this.offset, limit).subscribe(data =>{
-        this.pokemons_borrador = data.results;
-        var i=0;
-        var id=offset;
-        this.pokemons = [];
-        this.pokemons_borrador.forEach(element => {
-          this.pokemons[i] = {'name':element['name'],'url':element['url'],'id':id+1};
-          i++;
-          id++;
-        });
-        this.pokemons_borrador = this.pokemons;
-    });
-=======
   public getPokemons(generacion){
     this.pokemons = [];
     this.pokemonApi.getPokemons(generacion).subscribe(
@@ -76,7 +59,6 @@ export class GaleriaComponent implements OnInit {
       )}
     )
     this.pokemons_borrador = this.pokemons;
->>>>>>> fix_grilla_de_pokemons
   }
 
   public openDialog(id): void {
