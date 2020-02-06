@@ -1,22 +1,21 @@
-<div id="pokemon" mat-dialog-content *ngIf="pokemon_info">
-    <div class="col-12 d-flex justify-content-end">
-        <mat-icon (click)="onNoClick()">close</mat-icon>
-    </div>
-    <div class="row encabezado">
-        <div class="col-6 d-flex justify-content-center">
+<div  mat-dialog-content *ngIf="pokemon_info">
+    <div class="row encabezado mb-5">
+        <div class="col-12 my-2 d-flex justify-content-end">
+            <mat-icon (click)="onNoClick()">close</mat-icon>
+        </div>
+        <div id="pokemon" class="col-4 d-flex justify-content-center" [style.background-image]='bgImage'>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
         </div>
-        <div class="col-6 col-md-3 my-auto text-center">
+        <div class="col-6 col-md-8 my-auto text-center">
             <h5>{{pokemon_info['name']}}</h5>
             <div class="row d-flex justify-content-center">
                 <img *ngFor="let info of pokemon_info['types']" src="../../assets/images/{{info['type']['name']}}.png" >            
             </div>
         </div>
     </div>
-    <hr>
     <div class="pokemon_info">
         <div class="my-3">
-            <h5 class="col-12 my-3"> Resistencias </h5>
+            <h5 class="col-12 my-3 {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>
             <div class="row mx-3">
                 <div class="row col-md-2 col-4" *ngFor="let resistencia of resistencias" >
                    {{resistencia['count']}}x
@@ -25,7 +24,7 @@
             </div>
         </div>
         <div class="my-3">
-            <h5 class="col-12 my-3"> Debilidad </h5>
+            <h5 class="col-12 my-3 {{pokemon_info['types'][0]['type']['name']}}"> Debilidad </h5>
             <div class="row mx-3">
                 <div class="row col-md-2 col-4" *ngFor="let debilidad of debilidades" >
                     {{debilidad['count']}}x

@@ -17,6 +17,9 @@ export class PokemonComponent implements OnInit {
   resistencias = [];
   cantidadDeTipo = 0;
 
+  bgImage:any;
+  bg:string;
+
   tableType:any[][]= [
     [0,"normal","fire","water","grass","electric","ice","fighting","poison","ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"],
     ["normal"  ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,3 ,0 ,0 ,1 ,0 ],
@@ -40,7 +43,9 @@ export class PokemonComponent implements OnInit {
   ];
 
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
-    public dialogRef: MatDialogRef<PokemonComponent>) { }
+    public dialogRef: MatDialogRef<PokemonComponent>) { 
+
+    }
 
   ngOnInit() {
     this.getPokemonInfo();
@@ -54,6 +59,7 @@ export class PokemonComponent implements OnInit {
       this.pokemon_info = data;
       this.cantidadDeTipo = this.pokemon_info['types'].length;
       this.getDebilidadesyResistencias(this.pokemon_info['types']);
+      this.bgImage = this.sanitizer.bypassSecurityTrustStyle('url(../../assets/images/background/'+this.pokemon_info['types'][0]['type']['name']+'.jpg');
     });
   }
 
