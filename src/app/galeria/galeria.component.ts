@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class GaleriaComponent implements OnInit {
 
   pokemons_borrador: any[];
+  pokemonsFinal = [];
   pokemons = [];
   imaga_pokemon : any[];
   offset = 0;
@@ -23,42 +24,34 @@ export class GaleriaComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getPokemons(1); 
+    this.getPokemons(0,151); 
   }
 
-  public getPokemons(generacion){
-    this.pokemons = [];
-    this.pokemonApi.getPokemons(generacion).subscribe(
+  public getPokemons(offset,limit){
+    let pokemons = [];
+    this.pokemonsFinal = [];
+    this.pokemonApi.getPokemons(offset,limit).subscribe(
       data =>{
-        data['pokemon_species'].forEach(
+        data['results'].forEach(
           element => {
-          this.pokemons.push({'name': element['name'],'url': element['url']})
+            pokemons.push({'name': element['name'],'url': element['url']})
           });
       },
       err => {},
       () =>{
-          this.pokemons.forEach(pokemon => {
+          pokemons.forEach(pokemon => {
             this.pokemonApi.getPokemonSpecie(pokemon['url']).subscribe(data =>{
                pokemon.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data['id'] + ".png" 
                pokemon.id  = data['id']
               },
               err => {},
               () => {
-                this.pokemons.sort(function (a, b) {
-                  if (a.id > b.id) {
-                    return 1;
-                  }
-                  if (a.id < b.id) {
-                    return -1;
-                  }
-                  // a must be equal to b
-                  return 0;
-                })
+                this.pokemons = pokemons;
+                this.pokemons_borrador = this.pokemons;
             }
           )}
       )}
     )
-    this.pokemons_borrador = this.pokemons;
   }
 
   public openDialog(id): void {
