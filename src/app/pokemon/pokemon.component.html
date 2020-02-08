@@ -1,32 +1,35 @@
 <div  mat-dialog-content *ngIf="pokemon_info">
-    <div class="row encabezado mb-5">
-        <div class="col-12 my-2 d-flex justify-content-end">
-            <mat-icon (click)="onNoClick()">close</mat-icon>
+    <div class="row encabezado">
+        <div id="pokemon" class="col-3">
+            <div class="col-12 d-flex justify-content-center" [style.background-image]='bgImage'>    
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
+            </div>
         </div>
-        <div id="pokemon" class="col-4 d-flex justify-content-center" [style.background-image]='bgImage'>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
-        </div>
-        <div class="col-6 col-md-8 my-auto text-center">
-            <h5>{{pokemon_info['name']}}</h5>
-            <div class="row d-flex justify-content-center">
-                <img *ngFor="let info of pokemon_info['types']" src="../../assets/images/{{info['type']['name']}}.png" >            
+        <div class="col-9 row align-items-end">
+            <mat-icon class="close" (click)="onNoClick()">close</mat-icon>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center nombre">
+                        <h5 class="col-6 text-center {{pokemon_info['types'][0]['type']['name']}}">{{pokemon_info['name']}}</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="pokemon_info">
-        <div class="my-3">
-            <h5 class="col-12 my-3 {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>
-            <div class="row mx-3">
-                <div class="row col-md-2 col-4" *ngFor="let resistencia of resistencias" >
+    <div class="row pokemon_info p-4 mt-5 justify-content-center">
+        <div class="tabla col-12 col-md-4 mx-2 p-1">
+            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>   
+            <div class="col-12 px-4 m-1"> 
+                <div class="row m-1" *ngFor="let resistencia of resistencias" >
                    {{resistencia['count']}}x
                    <img src="../../assets/images/{{resistencia['type']}}.png" >
                 </div>   
             </div>
         </div>
-        <div class="my-3">
-            <h5 class="col-12 my-3 {{pokemon_info['types'][0]['type']['name']}}"> Debilidad </h5>
-            <div class="row mx-3">
-                <div class="row col-md-2 col-4" *ngFor="let debilidad of debilidades" >
+        <div class="tabla col-12 col-md-4 mx-2 p-1">
+            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Debilidad </h5>
+            <div class="col-12 px-4 m-1">    
+                <div class="row m-1" *ngFor="let debilidad of debilidades" >
                     {{debilidad['count']}}x
                     <img src="../../assets/images/{{debilidad['type']}}.png">
                 </div>  
