@@ -1,37 +1,42 @@
+
 <div  mat-dialog-content *ngIf="pokemon_info">
     <div class="row encabezado">
-        <div id="pokemon" class="col-3">
+        <div id="pokemon" class="col-md-3 col-4">
             <div class="col-12 d-flex justify-content-center" [style.background-image]='bgImage'>    
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
             </div>
         </div>
-        <div class="col-9 row align-items-end">
+        <div class="col-md-9 col-8 row align-items-end p-0 m-0 ">
             <mat-icon class="close" (click)="onNoClick()">close</mat-icon>
-            <div class="col-12">
+            <div class="col-12 mx-1">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center nombre">
-                        <h5 class="col-6 text-center {{pokemon_info['types'][0]['type']['name']}}">{{pokemon_info['name']}}</h5>
+                        <h5 class="col-md-6 col-12 text-center {{pokemon_info['types'][0]['type']['name']}}">{{pokemon_info['name']}}</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row pokemon_info p-4 mt-5 justify-content-center">
-        <div class="tabla col-12 col-md-4 mx-2 p-1">
+    <div class="row pokemon_info p-4 mt-3 justify-content-center">
+        <div class="tabla col-12 col-md-4 m-2 p-1">
             <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>   
             <div class="col-12 px-4 m-1"> 
                 <div class="row m-1" *ngFor="let resistencia of resistencias" >
-                   {{resistencia['count']}}x
-                   <img src="../../assets/images/{{resistencia['type']}}.png" >
+                   <p class="col-2">{{resistencia['count']}}x</p>
+                   <div class="col-2">  
+                        <img src="../../assets/images/{{resistencia['type']}}.png" >
+                    </div>
                 </div>   
             </div>
         </div>
-        <div class="tabla col-12 col-md-4 mx-2 p-1">
-            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Debilidad </h5>
+        <div class="tabla col-12 col-md-4 m-2 p-1">
+            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Debilidades </h5>
             <div class="col-12 px-4 m-1">    
                 <div class="row m-1" *ngFor="let debilidad of debilidades" >
-                    {{debilidad['count']}}x
-                    <img src="../../assets/images/{{debilidad['type']}}.png">
+                    <p class="col-2">{{debilidad['count']}}x</p>
+                    <div class="col-2">
+                        <img src="../../assets/images/{{debilidad['type']}}.png">
+                    </div>
                 </div>  
             </div>
         </div>
