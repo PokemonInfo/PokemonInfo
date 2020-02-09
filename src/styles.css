@@ -5,7 +5,9 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Orbitron', sans-serif;}
 
-
+.navbar{
+    font-family: 'Orbitron', sans-serif;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .mat-dialog-content{
@@ -19,4 +21,12 @@ body { margin: 0; font-family: 'Orbitron', sans-serif;}
     border-width: 1vw;
     border-color:  lightslategray;
     color: black;
+}
+
+.mat-menu-panel {
+    background-color: lightslategray;
+}
+
+.cdk-overlay-connected-position-bounding-box{
+    left: 0;
 }

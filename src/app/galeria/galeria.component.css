@@ -1,3 +1,7 @@
+.menu{
+  background-color: lightslategray;
+}
+
 a {
   transition: .5s;
 }
@@ -6,12 +10,16 @@ a:hover {
   background: gold;
 }
 
+app-menu-celular{
+  display: none;
+}
+
 
 .galeria{
   margin: 0;
   padding: 0;
   position: relative;
-  top: 70px;
+  top: 90px;
 }
 
 
@@ -26,15 +34,17 @@ a:hover {
 /* Smartphones (portrait and landscape) ———– */
 @media only screen and (min-device-width : 320px)
 and (max-device-width : 480px) {
-  div nav{
-    width: 100%;
-    padding: 0 20px;
-    padding-top: 23px;
-    margin: 0;
+  .menu{
+    display: none;
   }
 
   .galeria{
-    top: 90px;
+    width: 100%;
+    position: unset;
+  }
+
+  app-menu-celular{
+    display: block;
   }
 
 }
