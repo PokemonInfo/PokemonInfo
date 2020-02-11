@@ -1,19 +1,42 @@
-<app-menu-celular></app-menu-celular>
+
 <div class="menu">
     <nav class="navbar navbar-dark py-1 d-flex justify-content-around">
         <div class="logo col-md-2">
             <img class="img-fluid" src="../../assets/images/logo/logo.png">
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <button class="col-2 m-0 p-2" mat-menu-item (click)="getPokemons(0,151)">Generacion 1</button>
-            <button class="col-2 m-0 p-2" mat-menu-item (click)="getPokemons(151,100)">Generacion 2</button>
-            <button class="col-2 m-0 p-2" mat-menu-item (click)="getPokemons(251,135)">Generacion 3</button>
-            <button class="col-2 m-0 p-2" mat-menu-item (click)="getPokemons(386,107)">Generacion 4</button>
-            <button class="col-2 m-0 p-2" mat-menu-item (click)="getPokemons(493,156)">Generacion 5</button>
+            <button class="col-2 m-1 p-2 active" (click)="getPokemons(0,151)">1.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(151,100)">2.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(251,135)">3.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(386,107)">4.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(493,156)">5.ª Gen.</button>
         </div>
         <div class="col-8 col-md-4">
             <form class="row form-inline">
                 <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" class="search-input" class="col-md-10 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
+                <mat-icon class="col-md-1">search</mat-icon>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<!--MENU PARA CELULAR--> 
+
+<div class="menu-celular">
+    <nav class="navbar navbar-dark d-flex justify-content-between">
+        <button class="col-1 m-0 p-0" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="menu-celular">
+            <button mat-menu-item class="text-center" (click)="getPokemons(0, 151)">1.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(151, 100)">2.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(251, 138)">3.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(385, 107)">4.ª Gen.</button>
+            <button  mat-menu-item class="text-center" (click)="getPokemons(492, 156)">5.ª Gen.</button>
+        </mat-menu>
+        <div class="col-10 col-md-4 mx-1">
+            <form class="row form-inline mx-2 d-flex justify-content-between">
+                <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" class="search-input" class="col-10 form-control " type="search" name="nombrePokemon" aria-label="Search">
                 <mat-icon class="col-md-1">search</mat-icon>
             </form>
         </div>

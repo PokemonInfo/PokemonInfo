@@ -16,7 +16,7 @@
     height: 100%;
     border-right-style: solid;
     border-right-width: 1vw;
-    border-color:  lightslategray;
+    border-color:  #233d7d;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,7 +25,7 @@
 .encabezado{
     border-bottom-style: solid;
     border-bottom-width: 1vw;
-    border-color:  lightslategray;
+    border-color:  #233d7d;
     height: 20vh;
 }
 
@@ -37,13 +37,13 @@
     padding: 0 !important;
     border-style: solid;
     border-width: 0.2vw;
-    border-color:  lightslategray;
+    border-color:  #233d7d;
 }
 
 /**************************************/
 
 .tabla{
-    background-color: lightslategray;
+    background-color: #233d7d;
 }
 
 .tabla div{

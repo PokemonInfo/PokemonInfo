@@ -27,7 +27,7 @@ export class GaleriaComponent implements OnInit {
     this.getPokemons(0,151); 
   }
 
-  public getPokemons(offset,limit){
+  getPokemons(offset,limit){
     let pokemons = [];
     this.pokemonsFinal = [];
     this.pokemonApi.getPokemons(offset,limit).subscribe(

@@ -17,7 +17,6 @@ import {MatButtonModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { BuscadorPipe } from './buscador.pipe';
-import { MenuCelularComponent } from './menu-celular/menu-celular.component';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { MenuCelularComponent } from './menu-celular/menu-celular.component';
     GaleriaComponent,
     PokemonComponent,
     BuscadorPipe,
-    MenuCelularComponent
   ],
   imports: [
     BrowserModule,
