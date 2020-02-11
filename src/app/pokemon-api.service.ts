@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 
 /*const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/pokemon-form";*/
@@ -32,6 +32,10 @@ export class PokemonApiService {
   }
 
   getPokemonSpecie(url): Observable <any>{
+    return this.getUrl(url);
+  }
+
+  public getUrl(url):Observable <any>{
     return this.httpClient.get(url);
   }
 
@@ -42,5 +46,9 @@ export class PokemonApiService {
 
   cargarId(id){
     this.id = id;
+  }
+
+  getIdCurrenPokemon(){
+    return this.id;
   }
 }
