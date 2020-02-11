@@ -71,6 +71,10 @@ export class GaleriaComponent implements OnInit {
   }
 
   public buscarPokemon(){
+    if(this.pokemons.length == 0){
+      console.log('hola');
+
+    }
     var pokemons = [];
     this.pokemons = [];
     this.pokemons_borrador.forEach(element => {
@@ -78,7 +82,6 @@ export class GaleriaComponent implements OnInit {
         pokemons.push(element);
       }
     });
-    console.log(pokemons);
     this.pokemons = pokemons;
   }
 
