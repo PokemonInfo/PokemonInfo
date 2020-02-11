@@ -25,7 +25,7 @@ import { BuscadorPipe } from './buscador.pipe';
     InicioComponent,
     GaleriaComponent,
     PokemonComponent,
-    BuscadorPipe
+    BuscadorPipe,
   ],
   imports: [
     BrowserModule,
