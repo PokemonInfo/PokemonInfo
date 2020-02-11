@@ -19,6 +19,11 @@ export class GaleriaComponent implements OnInit {
   limit = 0;
   buscador = false;
   nombrePokemon = '';
+  generaciones = {'gen_1': {'inicio': 0,'fin': 151},
+                  'gen_2': {'inicio': 151,'fin': 100},
+                  'gen_3': {'inicio': 251,'fin': 135},
+                  'gen_4': {'inicio': 386,'fin': 107},
+                  'gen_5': {'inicio': 493,'fin': 156},}
 
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
     public dialog: MatDialog) { }

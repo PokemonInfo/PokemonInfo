@@ -5,11 +5,11 @@
             <img class="img-fluid" src="../../assets/images/logo/logo.png">
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <button class="col-2 m-1 p-2 active" (click)="getPokemons(0,151)">1.ª Gen.</button>
-            <button class="col-2 m-1 p-2" (click)="getPokemons(151,100)">2.ª Gen.</button>
-            <button class="col-2 m-1 p-2" (click)="getPokemons(251,135)">3.ª Gen.</button>
-            <button class="col-2 m-1 p-2" (click)="getPokemons(386,107)">4.ª Gen.</button>
-            <button class="col-2 m-1 p-2" (click)="getPokemons(493,156)">5.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_1']['inicio'],generaciones['gen_1']['fin'])">1.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_2']['inicio'],generaciones['gen_2']['fin'])">2.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_3']['inicio'],generaciones['gen_3']['fin'])">3.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_4']['inicio'],generaciones['gen_4']['fin'])">4.ª Gen.</button>
+            <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_5']['inicio'],generaciones['gen_5']['fin'])">5.ª Gen.</button>
         </div>
         <div class="col-8 col-md-4">
             <form class="row form-inline">
@@ -28,11 +28,11 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="menu-celular">
-            <button mat-menu-item class="text-center" (click)="getPokemons(0, 151)">1.ª Gen.</button>
-            <button mat-menu-item class="text-center" (click)="getPokemons(151, 100)">2.ª Gen.</button>
-            <button mat-menu-item class="text-center" (click)="getPokemons(251, 138)">3.ª Gen.</button>
-            <button mat-menu-item class="text-center" (click)="getPokemons(385, 107)">4.ª Gen.</button>
-            <button  mat-menu-item class="text-center" (click)="getPokemons(492, 156)">5.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(generaciones['gen_1']['inicio'],generaciones['gen_1']['fin'])">1.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(generaciones['gen_2']['inicio'],generaciones['gen_2']['fin'])">2.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(generaciones['gen_3']['inicio'],generaciones['gen_3']['fin'])">3.ª Gen.</button>
+            <button mat-menu-item class="text-center" (click)="getPokemons(generaciones['gen_4']['inicio'],generaciones['gen_4']['fin'])">4.ª Gen.</button>
+            <button  mat-menu-item class="text-center" (click)="getPokemons(generaciones['gen_5']['inicio'],generaciones['gen_5']['fin'])">5.ª Gen.</button>
         </mat-menu>
         <div class="col-10 col-md-4 mx-1">
             <form class="row form-inline mx-2 d-flex justify-content-between">
