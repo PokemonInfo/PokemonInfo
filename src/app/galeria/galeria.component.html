@@ -10,8 +10,9 @@
             <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_3']['inicio'],generaciones['gen_3']['fin'])">3.ª Gen.</button>
             <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_4']['inicio'],generaciones['gen_4']['fin'])">4.ª Gen.</button>
             <button class="col-2 m-1 p-2" (click)="getPokemons(generaciones['gen_5']['inicio'],generaciones['gen_5']['fin'])">5.ª Gen.</button>
+            <button class="col-2 m-1 p-2">Nidos</button>
         </div>
-        <div class="col-8 col-md-4">
+        <div class="col-8 col-md-3">
             <form class="row form-inline">
                 <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" class="search-input" class="col-md-10 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
                 <mat-icon class="col-md-1">search</mat-icon>
@@ -51,3 +52,4 @@
         </div>
     </a>
 </div>
+

@@ -2,8 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { PokemonApiService } from './../pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
 import {MatDialogRef} from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { concat } from 'rxjs/operators';
 
 
 @Component({
@@ -12,7 +10,7 @@ import { concat } from 'rxjs/operators';
   styleUrls: ['./pokemon.component.css']
 })
 export class PokemonComponent implements OnInit {
-
+ 
   pokemon_info : any[];
   debilidades = [];
   resistencias = [];

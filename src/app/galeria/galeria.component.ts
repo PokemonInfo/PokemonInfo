@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonApiService } from './../pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
 import { PokemonComponent } from './../pokemon/pokemon.component';
-import { MatDialog } from '@angular/material/dialog';
+import { NidoComponent } from './../nido/nido.component';
+import { MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-galeria',
@@ -23,7 +24,7 @@ export class GaleriaComponent implements OnInit {
                   'gen_2': {'inicio': 151,'fin': 100},
                   'gen_3': {'inicio': 251,'fin': 135},
                   'gen_4': {'inicio': 386,'fin': 107},
-                  'gen_5': {'inicio': 493,'fin': 156},}
+                  'gen_5': {'inicio': 493,'fin': 156},};
 
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
     public dialog: MatDialog) { }
@@ -57,6 +58,16 @@ export class GaleriaComponent implements OnInit {
           )}
       )}
     )
+  }
+
+  public getMapaNidos(): void {
+    const dialogRef = this.dialog.open(NidoComponent, {
+      width: '1000px',
+      height: '550px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   public openDialog(id): void {

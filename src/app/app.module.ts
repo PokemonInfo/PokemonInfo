@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { BuscadorPipe } from './buscador.pipe';
+import { NidoComponent } from './nido/nido.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { BuscadorPipe } from './buscador.pipe';
     GaleriaComponent,
     PokemonComponent,
     BuscadorPipe,
+    NidoComponent,
   ],
   imports: [
     BrowserModule,
