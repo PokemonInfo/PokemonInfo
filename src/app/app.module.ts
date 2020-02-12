@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
+import { NidoComponent } from './nido/nido.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonApiService } from './pokemon-api.service';
@@ -17,7 +18,6 @@ import {MatButtonModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { BuscadorPipe } from './buscador.pipe';
-import { NidoComponent } from './nido/nido.component';
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { NidoComponent } from './nido/nido.component';
     MatMenuModule
   ],
 
-  entryComponents: [PokemonComponent],
+  entryComponents: [PokemonComponent, NidoComponent],
   providers: [PokemonApiService],
   bootstrap: [AppComponent]
 })

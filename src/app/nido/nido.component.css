@@ -1,0 +1,55 @@
+.row{
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+}
+
+.col-12, .col-md-12, .col-8, .col-md-8{
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+
+.close{
+    right: 0;
+    top: 0;
+}
+
+#nido .fondo{
+    color: white;
+    font-size: 1.5vw;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.galeria-nido{
+    position: relative;
+    height: 300px;
+    width:90%;
+    max-width: 400px;
+    overflow:auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-style: solid;
+    border-width: 0.5vw;
+    border-color:  #233d7d;
+}
+
+.galeria-nido a {
+    transition: .5s;
+}
+    
+.galeria-nido a:hover {
+    box-shadow: 0 0 12px 8px #29468f;
+    /*background: rgb(243, 243, 235);*/
+}
+  
+  
+  .galeria-nido a div{
+    transition: transform .2s;
+  }
+  
+  .galeria a div:hover{
+    transform: scale(1.1);
+  }

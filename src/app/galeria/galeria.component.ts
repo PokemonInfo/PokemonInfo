@@ -62,8 +62,8 @@ export class GaleriaComponent implements OnInit {
 
   public getMapaNidos(): void {
     const dialogRef = this.dialog.open(NidoComponent, {
-      width: '1000px',
-      height: '550px',
+      width: '900px',
+      height: '530px',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
