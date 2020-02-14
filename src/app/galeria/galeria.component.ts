@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonApiService } from './../pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
 import { PokemonComponent } from './../pokemon/pokemon.component';
-import { NidoComponent } from './../nido/nido.component';
 import { MatDialog} from '@angular/material';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-galeria',
@@ -18,22 +18,28 @@ export class GaleriaComponent implements OnInit {
   imaga_pokemon : any[];
   offset = 0;
   limit = 0;
-  buscador = false;
   nombrePokemon = '';
   generaciones = {'gen_1': {'inicio': 0,'fin': 151},
                   'gen_2': {'inicio': 151,'fin': 100},
                   'gen_3': {'inicio': 251,'fin': 135},
                   'gen_4': {'inicio': 386,'fin': 107},
                   'gen_5': {'inicio': 493,'fin': 156},};
+  nido:boolean; galeria:boolean; bucador:boolean = false;
 
   constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getPokemons(0,151); 
+    if(this.rutaActiva.snapshot.params.gen == 1){
+      this.getPokemons(0,151); 
+    }else if(this.rutaActiva.snapshot.params.nido == 'la-plata'){
+      
+      this.nido = true;
+    }
   }
 
   getPokemons(offset,limit){
+    this.galeria = true;
     let pokemons = [];
     this.pokemonsFinal = [];
     this.pokemonApi.getPokemons(offset,limit).subscribe(
@@ -58,16 +64,6 @@ export class GaleriaComponent implements OnInit {
           )}
       )}
     )
-  }
-
-  public getMapaNidos(): void {
-    const dialogRef = this.dialog.open(NidoComponent, {
-      width: '900px',
-      height: '530px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   public openDialog(id): void {

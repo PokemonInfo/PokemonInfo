@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
 
 /*const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/pokemon-form";*/
 /*const URL_LISTAPOKEMONS = "https://pokeapi.co/api/v2/generation/";*/
@@ -15,10 +14,11 @@ const URL_TYPES = "https://pokeapi.co/api/v2/type/";
 export class PokemonApiService {
 
   id: '';
+  datos: any;
 
   constructor(private httpClient: HttpClient) { }
 
-  getPokemons(offset,limit): Observable <any>{
+  getPokemons(offset,limit){
     var url = URL_LISTAPOKEMONS + "?offset=" + offset + "&limit=" + limit  /*+ generacion*/;
     return this.httpClient.get(url);
   }

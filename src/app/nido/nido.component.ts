@@ -17,7 +17,7 @@ export class NidoComponent implements AfterViewInit {
 
   mapOptions: google.maps.MapOptions = {
    center: this.coordinates,
-   zoom: 12
+   zoom: 15
   };
 
   marker = new google.maps.Marker({
