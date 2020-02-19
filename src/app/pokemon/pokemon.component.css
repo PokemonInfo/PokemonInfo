@@ -5,22 +5,12 @@
     z-index: 4;
 }
 
-#pokemon{
-    width: 100%;
-    height: 100%;
-    padding-right: 0px;
-    padding-left: 0px;
-}
 
 #pokemon div{
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.encabezado{
-    height: 20vh;
 }
 
 .nombre{

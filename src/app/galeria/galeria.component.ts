@@ -69,7 +69,7 @@ export class GaleriaComponent implements OnInit {
   public openDialog(id): void {
     this.pokemonApi.cargarId(id);
     const dialogRef = this.dialog.open(PokemonComponent, {
-      width: '600px',
+      width: '500px',
       height: '650px',
     });
     dialogRef.afterClosed().subscribe(result => {
