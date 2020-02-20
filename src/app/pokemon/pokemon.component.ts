@@ -3,6 +3,7 @@ import { PokemonApiService } from './../pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
 import {MatDialogRef} from '@angular/material/dialog';
 
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-pokemon',
@@ -15,6 +16,7 @@ export class PokemonComponent implements OnInit {
   debilidades = [];
   resistencias = [];
   cantidadDeTipo = 0;
+  types = [];
 
   bgImage:any;
   bg:string;
@@ -48,55 +50,21 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit() {
     this.getPokemonInfo();
+    this.getSizeWindows();
   }
 
   public getPokemonInfo(){
     this.debilidades = [];
     this.resistencias  = [];
     this.pokemonApi.getPokemon(null).subscribe(data =>{
-      this.pokemon_info = data;
-      this.cantidadDeTipo = this.pokemon_info['types'].length;
-      this.bgImage = this.sanitizer.bypassSecurityTrustStyle('url(../../assets/images/background/'+this.pokemon_info['types'][0]['type']['name']+'.jpg');
-      this.getDebilidadesyResistencias(this.pokemon_info['types']);  
+      this.pokemon_info = data; 
     },
     err => {},
-    () => {
-      this.pokemonApi.getUrl(this.pokemon_info['species']['url']).subscribe(
-        data =>{
-          this.pokemon_info['extras'] = data;
-        },
-        err => {},
-        () =>{
-          this.pokemonApi.getUrl(this.pokemon_info['extras']['evolution_chain']['url']).subscribe(
-            data => {
-              data = data['chain']
-              console.log(data)
-              this.pokemon_info['evolution_chain'] = [data['species']];
-              let evolution = data['evolves_to'][0];
-              if (evolution === undefined){
-                console.log("no tiene Evoluciones")
-              }else{
-                while(evolution !== undefined){
-                  this.pokemon_info['evolution_chain'].push(evolution['species']);
-                  evolution = evolution['evolves_to'][0];
-                }
-                this.pokemon_info['evolution_chain'].forEach(pokemon => {
-                  this.pokemonApi.getUrl(pokemon['url']).subscribe(
-                    data => {
-                      pokemon['id']  = data['id']
-                      pokemon['img'] = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon['id']+".png"
-                    }
-                  )
-                })
-              }
-            },
-            err => {},
-            () => {
-              console.log(this.pokemon_info)
-            }
-          )
-        }
-      )
+    () => {  
+      this.cantidadDeTipo = this.pokemon_info['types'].length;
+      this.getTypes();
+      this.getEvoluciones();
+      this.getDebilidadesyResistencias(this.pokemon_info['types']); 
     }
     );
   }
@@ -106,6 +74,44 @@ export class PokemonComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  public getEvoluciones(){
+    this.pokemonApi.getUrl(this.pokemon_info['species']['url']).subscribe(
+      data =>{
+        this.pokemon_info['extras'] = data;
+      },
+      err => {},
+      () =>{
+        this.pokemonApi.getUrl(this.pokemon_info['extras']['evolution_chain']['url']).subscribe(
+          data => {
+            data = data['chain']
+            this.pokemon_info['evolution_chain'] = [data['species']];
+            let evolution = data['evolves_to'][0];
+            if (evolution === undefined){
+              console.log("no tiene Evoluciones")
+            }else{
+              while(evolution !== undefined){
+                this.pokemon_info['evolution_chain'].push(evolution['species']);
+                evolution = evolution['evolves_to'][0];
+              }
+              this.pokemon_info['evolution_chain'].forEach(pokemon => {
+                this.pokemonApi.getUrl(pokemon['url']).subscribe(
+                  data => {
+                    pokemon['id']  = data['id']
+                    pokemon['img'] = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon['id']+".png"
+                  }
+                )
+              })
+            }
+          },
+          err => {},
+          () => {
+            console.log(this.pokemon_info);
+          }
+        )
+      }
+    )
   }
 
   private getDebilidadesyResistencias(types){
@@ -205,5 +211,18 @@ export class PokemonComponent implements OnInit {
       }
     }); 
     return eficacias;   
+  }
+
+  public getTypes(){
+    this.pokemon_info['types'].forEach(elemento=>{
+      this.types.push(elemento['type']['name']);
+    })
+  }
+
+  public getSizeWindows(){
+    
+    var windows_width = $(window).width();
+    var windows_height = $(window).height();
+    
   }
 }

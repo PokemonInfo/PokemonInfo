@@ -1,26 +1,26 @@
 <div  mat-dialog-content *ngIf="pokemon_info">
     <div class="row d-flex justify-content-center">
-        <div id="pokemon" class="col-md-5 col-4 p-1 m-1">
+        <div id="pokemon" class="marco col-md-5 col-12 p-1 m-1">
             <div class="col-12 d-flex justify-content-center">    
+                <mat-icon class="col-md-12 p-1 close-cell" (click)="onNoClick()">close</mat-icon>
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
             </div>
         </div>
-        <div class="col-md-5 col-8 row align-items-end p-1 m-1">
+        <div class="col-md-5 col-12 row align-items-end p-1 m-1">
             <mat-icon class="col-md-12 close" (click)="onNoClick()">close</mat-icon>
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center nombre">
-                        <h5 class="col-md-6 col-12 text-center">{{pokemon_info['name']}}</h5>
-                    </div>
+            <div class="col-12 nombre">
+                <h4 class="text-center">{{pokemon_info['name']}}</h4>
+                <div class="col-12 d-flex justify-content-center">
+                    <img *ngFor="let type of types" src="../../assets/images/{{type}}.png">
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
-    <div class="row pokemon_info mt-2 d-flex justify-content-center">
+    <div class="row pokemon_info my-2 d-flex justify-content-center">
         <div class="tabla col-12 col-md-5 p-1 m-1">
             <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>   
             <div class="col-12 px-4 m-1"> 
-                <div class="row m-1" *ngFor="let resistencia of resistencias" >
+                <div class="row m-1 text-center" *ngFor="let resistencia of resistencias" >
                    <p class="col-2">{{resistencia['count']}}x</p>
                    <div class="col-2">  
                         <img src="../../assets/images/{{resistencia['type']}}.png" >
@@ -39,6 +39,17 @@
                 </div>  
             </div>
         </div>
+    </div>
+    <div class="mx-3 marco">
+        <p class="text-center">Cadena evolutiva</p>
+    </div>
+    <div class="galeria cadena-evolutiva col-12 row my-2 px-4">
+        <a class="col-md-4 col-12" *ngFor="let evolucion of pokemon_info['evolution_chain']">
+            <div class="">
+                <img src="{{evolucion['img']}}" class="col-12 img-fluid">
+                <p clase="col-md-12 name-evolution text-center">{{evolucion['name']}}</p>
+            </div>
+        </a>
     </div>
 </div>
 

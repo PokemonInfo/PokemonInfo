@@ -1,27 +1,34 @@
-.close{
+.close, .close-cell{
     position: absolute;
     right: 0;
     top: 0;
     z-index: 4;
 }
 
-
-#pokemon div{
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.marco p{
+    border-style: solid;
+    border-width: 0.2vw;
+    border-color:  #233d7d;
 }
 
 .nombre{
     padding: 0% !important;
 }
 
+.cadena-evolutiva p{
+    text-align: center !important;
+    font-size: 0.8vw;
+}
+
+h5{
+    color: white;
+}
+
 
 /**************************************/
 
 .tabla{
-    background-color: #233d7d;
+    background-color: #445fa1;
 }
 
 .tabla div{
@@ -30,42 +37,74 @@
 
 /**************************************/
 
-.water{
-    background-color: rgb(94, 163, 231);
+
+.galeria a:hover {
+    box-shadow: 0 0 12px 8px #29468f;
+    /*background: rgb(243, 243, 235);*/
+  }
+  
+  .galeria{
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  
+  .galeria div{
+    transition: transform .2s;
+  }
+  
+  .galeria div:hover{
+    transform: scale(1.1);
+  }
+
+  
+  /* Smartphones (portrait and landscape) ———– */
+@media only screen and (min-device-width : 480px)
+and (max-device-width : 2040px) {
+    .galeria{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+
+    .close-cell{
+        display: none;
+    }
+
 }
-.fire{
-    background-color: rgb(241, 176, 70); 
-}
-.dark{
-    background-color: rgb(163, 161, 161);
-}
-.electric{
-    background-color: rgb(235, 225, 94);
-}
-.fairy{
-    background-color: pink;
-}
-.dragon{
-    background-color: rgb(178, 227, 250);
-}
-.ghost{
-    background-color: rgb(162, 101, 241);
-}
-.ice{
-    background-color: rgb(214, 227, 233);
-}
-.rock{
-    background-color: rgb(197, 143, 56);
-}
-.ground{
-    background-color: rgb(123, 124, 40);
-}
-.psychic{
-    background-color: rgb(209, 79, 144);
-}
-.grass{
-    background-color: rgb(112, 241, 95);
-}
-.poison{
-    background-color: rgb(97, 146, 91);
+
+@media only screen and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+    .galeria{
+        display: none;
+        justify-content: none !important;
+        align-items: none !important;
+      }
+
+    .cadena-evolutiva{
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        flex-wrap: nowrap; 
+        overflow: auto;
+    }
+
+    .cadena-evolutiva a{
+        width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .cadena-evolutiva p{
+        font-size: 6vw !important;
+    }
+
+    .close{
+        display: none;
+    }
+
+    .close-cell{
+        display: block;
+    }
+
 }
