@@ -35,37 +35,33 @@ h5{
     color: white;
 }
 
-/**************************************/
-
-
-.galeria a:hover {
-    box-shadow: 0 0 12px 8px #29468f;
-    /*background: rgb(243, 243, 235);*/
-  }
-  
-  .galeria{
-    padding: 0;
-    margin: 0;
-    position: relative;
-  }
-  
-  .galeria div{
-    transition: transform .2s;
-  }
-  
-  .galeria div:hover{
-    transform: scale(1.1);
-  }
-
   
   /* Smartphones (portrait and landscape) ———– */
 @media only screen and (min-device-width : 480px)
 and (max-device-width : 2040px) {
     .galeria{
+        padding: 0;
+        margin: 0;
+        position: relative;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
       }
+
+    /**************************************/
+
+    .galeria a:hover {
+        box-shadow: 0 0 12px 8px #29468f;
+        /*background: rgb(243, 243, 235);*/
+    }
+    
+    .galeria div{
+        transition: transform .2s;
+    }
+    
+    .galeria div:hover{
+        transform: scale(1.1);
+    }
 
     .close-cell{
         display: none;
