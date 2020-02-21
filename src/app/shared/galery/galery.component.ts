@@ -19,7 +19,6 @@ export class GaleryComponent implements OnInit {
   }
 
   public openDialog(id): void {
-    console.log(id);
     this.pokemonApi.cargarId(id);
     const dialogRef = this.dialog.open(PokemonComponent, {
       width: '500px',

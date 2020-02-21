@@ -25,8 +25,8 @@ export class MenuComponent implements OnInit {
     this.generation = gen;
   }
 
-  public buscarPokemon(){
-    this.data.getPokemons(0,800);
+  public buscarPokemn(){
+    this.data.getPokemons(0,800,true);
     var pokemons = [];
     console.log(this.data.pokemons);
     this.data.pokemons = [];

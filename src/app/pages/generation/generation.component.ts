@@ -20,17 +20,16 @@ export class GenerationComponent implements OnInit {
                   '3': {'inicio': 251,'fin': 135},
                   '4': {'inicio': 386,'fin': 107},
                   '5': {'inicio': 493,'fin': 156},};
-  bucador:boolean = false;
 
-  constructor(private pokemonApi: PokemonApiService, 
+  constructor(private pokemonApi: PokemonApiService,
               private rutaActiva: ActivatedRoute) { }
 
   ngOnInit() {
       let gen = this.rutaActiva.snapshot.params.gen;
-      this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin']); 
+      this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
   }
 
-  getPokemons(offset,limit){
+  getPokemons(offset,limit,search){
     let pokemons = [];
     this.pokemonApi.getPokemons(offset,limit).subscribe(
       data =>{
@@ -54,7 +53,6 @@ export class GenerationComponent implements OnInit {
           )}
       )}
     )
-    return(this.pokemons);
   }
 
 }
