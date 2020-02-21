@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { PokemonApiService } from './../pokemon-api.service';
+import { PokemonApiService } from './../../user/services/pokemon-api.service';
 import { DomSanitizer} from '@angular/platform-browser';
 import {MatDialogRef} from '@angular/material/dialog';
 
@@ -226,3 +226,4 @@ export class PokemonComponent implements OnInit {
     
   }
 }
+

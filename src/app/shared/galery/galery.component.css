@@ -1,0 +1,77 @@
+.menu, .menu-celular{
+    background-color: #233d7d;
+    position:fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+  }
+  
+  
+  .menu-celular{
+    display: none;
+  }
+  
+  button{
+    border: none;
+    background-color: #233d7d;
+    color: white;
+  }
+  
+  button:hover{
+    background-color: #334f95;
+  }
+  
+  .galeria a {
+    transition: .5s;
+  }
+    
+  .galeria a:hover {
+    box-shadow: 0 0 12px 8px #29468f;
+    /*background: rgb(243, 243, 235);*/
+  }
+  
+  .galeria{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 90px;
+  }
+  
+  .galeria div{
+    transition: transform .2s;
+  }
+  
+  .galeria div:hover{
+    transform: scale(1.1);
+  }
+  
+  .menu-celular{
+    display: none;
+  }
+  
+  
+  mat-icon{
+    color: white;
+  }
+  
+  /* Smartphones (portrait and landscape) ———– */
+  @media only screen and (min-device-width : 320px)
+  and (max-device-width : 480px) {
+  
+    .menu-celular{
+      display: block;
+    }
+  
+    .menu{
+      display: none;
+    }
+  
+    .galeria{
+      top:80px;
+      width: 100%;
+    }
+  
+    
+  
+  }
+  

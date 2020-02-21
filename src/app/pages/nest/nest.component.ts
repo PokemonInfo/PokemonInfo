@@ -2,11 +2,11 @@ import { Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {} from 'googlemaps';
 
 @Component({
-  selector: 'app-nido',
-  templateUrl: './nido.component.html',
-  styleUrls: ['./nido.component.css']
+  selector: 'app-nest',
+  templateUrl: './nest.component.html',
+  styleUrls: ['./nest.component.css']
 })
-export class NidoComponent implements AfterViewInit {
+export class NestComponent implements AfterViewInit {
   title = 'angular-gmap';
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
   map: google.maps.Map;

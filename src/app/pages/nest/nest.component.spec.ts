@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NidoComponent } from './nido.component';
+import { NestComponent } from './nest.component';
 
-describe('NidoComponent', () => {
-  let component: NidoComponent;
-  let fixture: ComponentFixture<NidoComponent>;
+describe('NestComponent', () => {
+  let component: NestComponent;
+  let fixture: ComponentFixture<NestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NidoComponent ]
+      declarations: [ NestComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NidoComponent);
+    fixture = TestBed.createComponent(NestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
