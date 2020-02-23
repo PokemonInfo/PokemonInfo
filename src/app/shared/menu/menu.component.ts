@@ -4,8 +4,6 @@ import { GenerationComponent } from './../../pages/generation/generation.compone
 import { DataService } from 'src/app/user/services/data.service';
 import { PokemonApiService } from './../../user/services/pokemon-api.service';
 
-import * as $ from 'jquery';
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
