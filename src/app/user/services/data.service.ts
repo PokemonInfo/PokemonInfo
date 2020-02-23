@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { PokemonApiService } from './../../user/services/pokemon-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  pokemons_borrador: any[];
-  pokemonsFinal = [];
-  pokemons = [];
-  imaga_pokemon : any[];
-  nombrePokemon = '';
-  nido:boolean; galeria:boolean; bucador:boolean = false;
+  pokemons:any = [];
+  pokemons_borrador:any = [];
+  pokemons_borrador_search:any = [];
 
-  constructor(private pokemonApi: PokemonApiService) { }
+  constructor() { }
 
   
 }

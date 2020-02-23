@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PokemonApiService } from './../../user/services/pokemon-api.service';
+import { Component, OnInit} from '@angular/core';
 import { PokemonComponent } from './../pokemon/pokemon.component';
 import { MatDialog} from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+
+import { PokemonApiService } from './../../user/services/pokemon-api.service';
+import { DataService } from 'src/app/user/services/data.service';
 
 @Component({
   selector: 'app-galery',
@@ -10,13 +13,53 @@ import { MatDialog} from '@angular/material';
 })
 export class GaleryComponent implements OnInit {
 
-  @Input() pokemons: any = [];
+  generations = {'1': {'inicio': 0,'fin': 151},
+                  '2': {'inicio': 151,'fin': 100},
+                  '3': {'inicio': 251,'fin': 135},
+                  '4': {'inicio': 386,'fin': 107},
+                  '5': {'inicio': 493,'fin': 156},};
 
   constructor(private pokemonApi: PokemonApiService,
-    public dialog: MatDialog) { }
+              private data_pokemons: DataService,
+              private rutaActiva: ActivatedRoute,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
+      /*let gen = this.rutaActiva.snapshot.params.gen;
+      this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
+      this.getPokemons(0,649,true); */
   }
+
+  /*getPokemons(offset,limit,search){
+    let pokemons = [];
+    this.data_pokemons.pokemons = [];
+    this.pokemonApi.getPokemons(offset,limit).subscribe(
+      data =>{
+        data['results'].forEach(
+          element => {
+            pokemons.push({'name': element['name'],'url': element['url']})
+          });
+      },
+      err => {},
+      () =>{
+          pokemons.forEach(pokemon => {
+            this.pokemonApi.getPokemonSpecie(pokemon['url']).subscribe(data =>{
+               pokemon.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data['id'] + ".png" 
+               pokemon.id  = data['id']
+              },
+              err => {},
+              () => {
+                if(search){
+                  this.data_pokemons.pokemons_borrador_search = pokemons;
+                }else{
+                  this.data_pokemons.pokemons = pokemons;
+                  this.data_pokemons.pokemons_borrador = pokemons;
+                }
+            }
+          )}
+      )}
+    )
+  }*/
 
   public openDialog(id): void {
     this.pokemonApi.cargarId(id);
