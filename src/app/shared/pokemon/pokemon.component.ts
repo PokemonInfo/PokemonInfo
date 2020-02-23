@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { PokemonApiService } from './../../user/services/pokemon-api.service';
-import { DomSanitizer} from '@angular/platform-browser';
 import {MatDialogRef} from '@angular/material/dialog';
+
+import { PokemonApiService } from './../../user/services/pokemon-api.service';
+import { DataService } from 'src/app/user/services/data.service';
 
 import * as $ from 'jquery';
 
@@ -17,9 +18,6 @@ export class PokemonComponent implements OnInit {
   resistencias = [];
   cantidadDeTipo = 0;
   types = [];
-
-  bgImage:any;
-  bg:string;
 
   tableType:any[][]= [
     [0,"normal","fire","water","grass","electric","ice","fighting","poison","ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"],
@@ -43,20 +41,19 @@ export class PokemonComponent implements OnInit {
     ["fairy"   ,0 ,1 ,0 ,0 ,0 ,0 ,2 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,2 ,1 ,0 ],
   ];
 
-  constructor(private pokemonApi: PokemonApiService, private sanitizer:DomSanitizer,
-    public dialogRef: MatDialogRef<PokemonComponent>) { 
-
-    }
+  constructor(private pokemonApi: PokemonApiService, 
+              private data: DataService,
+             public dialogRef: MatDialogRef<PokemonComponent>) { }
 
   ngOnInit() {
-    this.getPokemonInfo();
+    this.getPokemonInfo(this.data.pokemon_id);
     this.getSizeWindows();
   }
-
-  public getPokemonInfo(){
+ 
+  public getPokemonInfo(id){
     this.debilidades = [];
     this.resistencias  = [];
-    this.pokemonApi.getPokemon(null).subscribe(data =>{
+    this.pokemonApi.getPokemon(id).subscribe(data =>{
       this.pokemon_info = data; 
     },
     err => {},
@@ -69,7 +66,14 @@ export class PokemonComponent implements OnInit {
     );
   }
 
-
+  public change_pokemon(id){
+    this.pokemon_info = [];
+    this.resistencias = [];
+    this.debilidades = [];
+    this.cantidadDeTipo = 0;
+    this.types = [];
+    this.getPokemonInfo(id);
+  }
 
 
   onNoClick(): void {

@@ -14,10 +14,10 @@ import { DataService } from 'src/app/user/services/data.service';
 export class GaleryComponent implements OnInit {
 
   generations = {'1': {'inicio': 0,'fin': 151},
-                  '2': {'inicio': 151,'fin': 100},
-                  '3': {'inicio': 251,'fin': 135},
-                  '4': {'inicio': 386,'fin': 107},
-                  '5': {'inicio': 493,'fin': 156},};
+                 '2': {'inicio': 151,'fin': 100},
+                 '3': {'inicio': 251,'fin': 135},
+                 '4': {'inicio': 386,'fin': 107},
+                 '5': {'inicio': 493,'fin': 156},};
 
   constructor(private pokemonApi: PokemonApiService,
               private data_pokemons: DataService,
@@ -62,7 +62,7 @@ export class GaleryComponent implements OnInit {
   }*/
 
   public openDialog(id): void {
-    this.pokemonApi.cargarId(id);
+    this.data_pokemons.pokemon_id = id;
     const dialogRef = this.dialog.open(PokemonComponent, {
       width: '500px',
       height: '650px',

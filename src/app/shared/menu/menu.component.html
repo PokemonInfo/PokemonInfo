@@ -1,14 +1,14 @@
 <div class="menu">
     <nav class="navbar navbar-dark py-1 d-flex justify-content-around">
-        <div class="logo col-md-2">
+        <div class="logo col-md-2" routerLink="generacion/1" (click)="loadGeneration(1)">
             <img class="img-fluid" src="../../assets/images/logo/logo.png">
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <button class="col-2 m-1 p-2" routerLink="generacion/1" (click)="loadGeneration(1)">1.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/2" (click)="loadGeneration(2)">2.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/3" (click)="loadGeneration(3)">3.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/4" (click)="loadGeneration(4)">4.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/5" (click)="loadGeneration(5)">5.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/1" (click)="loadGeneration('/generacion/1')">1.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/2" (click)="loadGeneration('/generacion/2')">2.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/3" (click)="loadGeneration('/generacion/3')">3.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/4" (click)="loadGeneration('/generacion/4')">4.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/5" (click)="loadGeneration('/generacion/5')">5.ª Gen.</button>
             <button class="col-2 m-1 p-2" routerLink="/nido/la-plata">Nidos</button>
         </div>
         <div class="col-8 col-md-3">

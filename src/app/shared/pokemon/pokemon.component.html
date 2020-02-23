@@ -3,7 +3,7 @@
         <div id="pokemon" class="marco col-md-5 col-12 p-1 m-1">
             <div class="col-12 d-flex justify-content-center">    
                 <mat-icon class="col-md-12 p-1 close-cell" (click)="onNoClick()">close</mat-icon>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon_info['id']}}.png" >
+                <img src="{{pokemon_info['sprites']['front_default']}}">
             </div>
         </div>
         <div class="col-md-5 col-12 row align-items-end p-1 m-1">
@@ -18,7 +18,7 @@
     </div>
     <div class="row pokemon_info my-2 d-flex justify-content-center">
         <div class="tabla col-12 col-md-5 p-1 m-1">
-            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Resistencias </h5>   
+            <h5 class="col-12 text-center"> Resistencias </h5>   
             <div class="col-12 px-4 m-1"> 
                 <div class="row m-1 text-center" *ngFor="let resistencia of resistencias" >
                    <p class="col-2">{{resistencia['count']}}x</p>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="tabla col-12 col-md-5 p-1 m-1">
-            <h5 class="col-12 text-center {{pokemon_info['types'][0]['type']['name']}}"> Debilidades </h5>
+            <h5 class="col-12 text-center"> Debilidades </h5>
             <div class="col-12 px-4 m-1">    
                 <div class="row m-1" *ngFor="let debilidad of debilidades" >
                     <p class="col-2">{{debilidad['count']}}x</p>
@@ -45,7 +45,7 @@
     </div>
     <div class="galeria cadena-evolutiva col-12 row my-2 px-4">
         <a class="col-md-4 col-12" *ngFor="let evolucion of pokemon_info['evolution_chain']">
-            <div class="">
+            <div (click)="change_pokemon(evolucion['id'])">
                 <img src="{{evolucion['img']}}" class="col-12 img-fluid">
                 <p clase="col-md-12 name-evolution text-center">{{evolucion['name']}}</p>
             </div>

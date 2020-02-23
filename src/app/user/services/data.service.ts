@@ -9,6 +9,8 @@ export class DataService {
   pokemons_borrador:any = [];
   pokemons_borrador_search:any = [];
 
+  pokemon_id: any = [];
+
   constructor() { }
 
   

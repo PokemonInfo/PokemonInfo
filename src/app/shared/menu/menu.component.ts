@@ -4,6 +4,8 @@ import { GenerationComponent } from './../../pages/generation/generation.compone
 import { DataService } from 'src/app/user/services/data.service';
 import { PokemonApiService } from './../../user/services/pokemon-api.service';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -13,18 +15,19 @@ export class MenuComponent implements OnInit {
 
   generation: string;
   nombrePokemon = '';
-  generations = {'1': {'inicio': 0,'fin': 151},
-                  '2': {'inicio': 151,'fin': 100},
-                  '3': {'inicio': 251,'fin': 135},
-                  '4': {'inicio': 386,'fin': 107},
-                  '5': {'inicio': 493,'fin': 156},};
+  generations = {'/generacion/1': {'inicio': 0,'fin': 151},
+                  '/generacion/2': {'inicio': 151,'fin': 100},
+                  '/generacion/3': {'inicio': 251,'fin': 135},
+                  '/generacion/4': {'inicio': 386,'fin': 107},
+                  '/generacion/5': {'inicio': 493,'fin': 156},};
 
   constructor(public data: GenerationComponent,
               private data_pokemons: DataService,
               private pokemonApi: PokemonApiService) { }
 
   ngOnInit() {
-    this.getPokemons(this.generations[1]['inicio'],this.generations[1]['fin'],false); 
+    let gen = $(location).attr('pathname');
+    this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
     this.getPokemons(0,649,true); 
   }
 
