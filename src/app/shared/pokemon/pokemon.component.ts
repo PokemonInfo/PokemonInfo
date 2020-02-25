@@ -18,6 +18,9 @@ export class PokemonComponent implements OnInit {
   resistencias = [];
   cantidadDeTipo = 0;
   types = [];
+  image_pokemon: string;
+  is_shiny: boolean = false;
+  change_shiny : string = 'Shiny';
 
   tableType:any[][]= [
     [0,"normal","fire","water","grass","electric","ice","fighting","poison","ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"],
@@ -47,7 +50,6 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit() {
     this.getPokemonInfo(this.data.pokemon_id);
-    this.getSizeWindows();
   }
  
   public getPokemonInfo(id){
@@ -59,6 +61,9 @@ export class PokemonComponent implements OnInit {
     err => {},
     () => {  
       this.cantidadDeTipo = this.pokemon_info['types'].length;
+      this.image_pokemon = this.pokemon_info['sprites']['front_default'];
+      this.change_shiny = 'Shiny';
+      this.is_shiny = false;  
       this.getTypes();
       this.getEvoluciones();
       this.getDebilidadesyResistencias(this.pokemon_info['types']); 
@@ -223,11 +228,23 @@ export class PokemonComponent implements OnInit {
     })
   }
 
-  public getSizeWindows(){
-    
-    var windows_width = $(window).width();
-    var windows_height = $(window).height();
-    
+  public changeImage(){
+    if(this.is_shiny){
+      this.image_pokemon = this.pokemon_info['sprites']['front_default'];
+      this.change_shiny = 'Shiny';
+      this.is_shiny = false;      
+    }else{
+      this.image_pokemon = this.pokemon_info['sprites']['front_shiny'];
+      this.change_shiny = 'Default';
+      this.is_shiny = true;      
+    }
+  }
+
+  resize(){
+    let widthBrowser = window.outerWidth;
+    let heightBrowser = window.outerHeight;
+    console.log(widthBrowser);
+
   }
 }
 

@@ -1,9 +1,13 @@
 <div  mat-dialog-content *ngIf="pokemon_info">
     <div class="row d-flex justify-content-center">
         <div id="pokemon" class="marco col-md-5 col-12 p-1 m-1">
-            <div class="col-12 d-flex justify-content-center">    
-                <mat-icon class="col-md-12 p-1 close-cell" (click)="onNoClick()">close</mat-icon>
-                <img src="{{pokemon_info['sprites']['front_default']}}">
+            <mat-icon class="col-md-12 p-1 close-cell" (click)="onNoClick()">close</mat-icon>
+            <a id="button-shiny" *ngIf="pokemon_info['sprites']['front_shiny']" class="col-md-12 p-0 m-0 d-flex justify-content-end">
+                <div (click)="changeImage()">{{change_shiny}}</div>
+            </a>
+            <div class="col-md-12 d-flex justify-content-center">
+                <img id="img-default" src="{{image_pokemon}}">
+                <img id="img-default-mobile" src="{{image_pokemon}}" (click)="changeImage()">
             </div>
         </div>
         <div class="col-md-5 col-12 row align-items-end p-1 m-1">

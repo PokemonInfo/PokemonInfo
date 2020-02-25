@@ -11,6 +11,18 @@
     border-color:  #233d7d;
 }
 
+#button-shiny{
+    border-style: none;
+    border-color: white;
+    font-size: 0.8vw;
+    text-decoration: none;
+    background-color: white;
+}
+
+#img-default-mobile{
+    display: none;
+}
+
 .nombre{
     padding: 0% !important;
 }
@@ -71,6 +83,18 @@ and (max-device-width : 2040px) {
 
 @media only screen and (min-device-width : 320px)
 and (max-device-width : 480px) {
+
+    #button-shiny{
+        display: none !important;
+    }
+
+    #img-default{
+        display: none;
+    }
+
+    #img-default-mobile{
+        display: block;
+    }
 
     .galeria{
         display: none;
