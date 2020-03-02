@@ -14,13 +14,31 @@
 <body >
   <app-root></app-root>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.6.2/firebase-app.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.6.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-analytics.js"></script>
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBzFqE0dxMNQNQUaMqdyS7pPrx9MTvith0",
+    authDomain: "pokemoninfo-875af.firebaseapp.com",
+    databaseURL: "https://pokemoninfo-875af.firebaseio.com",
+    projectId: "pokemoninfo-875af",
+    storageBucket: "pokemoninfo-875af.appspot.com",
+    messagingSenderId: "1005628509086",
+    appId: "1:1005628509086:web:8be6ddddfc0b265c42648f",
+    measurementId: "G-VRJW06J5MP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.database();
+  firebase.analytics();
+</script>
+
+
 </body>
 </html>
