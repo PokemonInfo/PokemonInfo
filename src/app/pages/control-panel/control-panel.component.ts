@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/user/services/data.service';
+import { NestService } from 'src/app/user/services/nest.service'
 
 @Component({
   selector: 'app-control-panel',
@@ -10,9 +11,11 @@ import { DataService } from 'src/app/user/services/data.service';
 export class ControlPanelComponent implements OnInit {
 
 
-  constructor(private data_pokemons: DataService) { }
+  constructor(private data_pokemons: DataService, private nest: NestService) { }
 
   ngOnInit() {
+    /*this.data_pokemons.nest_actuales = this.nest.getNests().valueChanges();*/
+    console.log(this.data_pokemons.nest_actuales)
   }
 
   public delete(index){
@@ -24,6 +27,7 @@ export class ControlPanelComponent implements OnInit {
     this.data_pokemons.nest_borrador = [];
     this.data_pokemons.date_actual = [];
     this.data_pokemons.date_borrador = [];
+    
     console.log(this.data_pokemons.date_actual);
     console.log(this.data_pokemons.nest_actuales);
   }
