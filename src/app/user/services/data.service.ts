@@ -11,6 +11,13 @@ export class DataService {
 
   pokemon_id: any = [];
 
+  date_actual: any = [];
+  date_borrador: any = [];
+
+  nest_viejos : any = [];
+  nest_actuales : any = [];
+  nest_borrador = [];
+
   constructor() { }
 
   
