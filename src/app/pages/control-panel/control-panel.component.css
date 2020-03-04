@@ -1,0 +1,70 @@
+.row{
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+}
+
+.col-12, .col-md-12, .col-8, .col-md-8{
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+
+.fecha-migracion{
+    height: 50px;
+}
+
+.delete-save{
+    height: 40px;
+}
+
+#nido{
+    position: relative;
+    top: 90px;
+}
+
+#nido .fondo{
+    color: white;
+    font-size: 1.5vw;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.pokemon{
+    border-style: solid;
+    border-width: 0.1vw;
+    border-color:  #233d7d; 
+}
+
+.edit, .delete{
+    font-size: 0.6vw;
+}
+
+/* Smartphones (portrait and landscape) ———– */
+@media only screen and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+    #nido{
+        top: 50px;
+    }
+
+    #map{
+        height: 250px;
+        margin: 5% 0% !important;
+    }
+}
+
+@media only screen and (min-device-width : 768px)
+and (max-device-width : 2500px) {
+    .galeria-nido{
+        position: relative;
+        max-height: 300px;
+        width:90%;
+        max-width: 300px;
+        overflow:auto;
+        box-sizing: border-box;
+    }  
+
+   
+}

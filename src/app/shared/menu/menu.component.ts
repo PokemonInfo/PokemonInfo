@@ -27,10 +27,12 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     let gen = $(location).attr('pathname');
-    console.log(gen);
     if(gen == '/'){gen = '/generacion/1';}
-    this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
-    this.getPokemons(0,649,true); 
+    if(gen == '/control-panel' || gen == '/nidos'){
+      this.getPokemons(0,649,true); 
+    }else{
+      this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
+    }
   }
 
   public loadGeneration(gen){

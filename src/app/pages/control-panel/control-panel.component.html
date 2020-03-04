@@ -1,0 +1,29 @@
+<div id="nido" class="row d-flex justify-content-center">
+    <div class="col-md-12 d-flex justify-content-center">
+        <p class="col-md-6 col-8 my-4 p-2 fondo text-center">Texto xd</p>
+    </div>
+    <div class="row col-md-4 col-12 d-flex justify-content-center">
+        <p class="col-md-8 text-center fecha-migracion">Migraciones del 01/01/2020 al 07/01/2020</p>
+        <div class="col-md-8 row galeria-nido">
+            <div class="col-3 col-md-12" *ngFor="let nest of data_pokemons.nest_actuales; let i=index">
+                <div class="pokemon m-1">
+                    <p clase="text-center">{{nest['name']}}</p>
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <button class="m-1 edit" (click)="edit(i)">editar</button>
+                        <button class="m-1 delete" (click)="delete(i)">eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 delete-save d-flex justify-content-end">
+            <button class="m-1" (click)="removeAll(data_pokemons.nest_actuales)">Eliminar todos</button>
+            <button class="m-1" (click)="saveAll(data_pokemons.nest_actuales)">Guardar</button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <app-nest-form></app-nest-form>
+    </div>
+    <div class="col-md-4">
+        <app-map></app-map>
+    </div>
+</div>

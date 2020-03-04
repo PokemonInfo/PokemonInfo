@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
+import { DatePipe } from '@angular/common';
+
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonApiService } from './user/services/pokemon-api.service';
 import { DataService } from './user/services/data.service';
@@ -23,7 +25,14 @@ import { NestComponent } from './pages/nest/nest.component';
 import { GaleryComponent } from './shared/galery/galery.component';
 import { ComponentsComponent } from './user/components/components.component';
 import { PokemonComponent } from './shared/pokemon/pokemon.component';
+
+
 import { NestService } from './user/services/nest.service';
+
+import { ControlPanelComponent } from './pages/control-panel/control-panel.component';
+import { MapComponent } from './shared/map/map.component';
+import { NestFormComponent } from './shared/nest-form/nest-form.component';
+import { DatesPipe } from './user/pipes/dates.pipe';
 
 
 @NgModule({
@@ -35,6 +44,10 @@ import { NestService } from './user/services/nest.service';
     NestComponent,
     GaleryComponent,
     ComponentsComponent,
+    ControlPanelComponent,
+    MapComponent,
+    NestFormComponent,
+    DatesPipe,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +65,11 @@ import { NestService } from './user/services/nest.service';
   ],
 
   entryComponents: [PokemonComponent, NestComponent],
+<<<<<<< HEAD
   providers: [PokemonApiService, DataService , NestService],
+=======
+  providers: [PokemonApiService, DataService, DatePipe],
+>>>>>>> b7b76711ee82f07424565dfb2c34bdc2795689c8
   bootstrap: [AppComponent]
 })
 export class AppModule { }
