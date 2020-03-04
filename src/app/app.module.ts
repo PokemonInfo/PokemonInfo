@@ -65,11 +65,8 @@ import { DatesPipe } from './user/pipes/dates.pipe';
   ],
 
   entryComponents: [PokemonComponent, NestComponent],
-<<<<<<< HEAD
-  providers: [PokemonApiService, DataService , NestService],
-=======
-  providers: [PokemonApiService, DataService, DatePipe],
->>>>>>> b7b76711ee82f07424565dfb2c34bdc2795689c8
+  providers: [PokemonApiService, DataService , NestService , DatePipe],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
