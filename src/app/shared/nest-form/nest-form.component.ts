@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/user/services/data.service';
+import { NestService } from 'src/app/user/services/nest.service';
+
+import { NestPokemon } from './../../models/nest';
+
+
 
 @Component({
   selector: 'app-nest-form',
@@ -12,34 +17,35 @@ export class NestFormComponent implements OnInit {
   date_from = '';
   date_to = '';
 
-  nombrePokemon = '';
+  /*nombrePokemon = '';
   idPokemon = '';
   lat = '';
-  lon = '';
+  lon = '';*/
 
   searchActive : boolean = false;
   image : string = './../../../assets/images/another/nest-img.png';
   placeholder : string = 'Ingrese nombre';
-  nest : any = [];
+  nest : Array<NestPokemon>;
+  selectPokemon : NestPokemon;
 
-  constructor(private data_pokemons: DataService) { }
+  constructor(private data_pokemons: DataService, private nestServices:NestService ) { }
 
   ngOnInit() {
-    this.nest = this.data_pokemons.nest_actuales;
+    this.selectPokemon = new NestPokemon();
   }
 
 
   public buscarPokemon(){
     this.searchActive = true;
     let pokemons = [];
-    if(this.nombrePokemon == ''){
+    if(this.selectPokemon.name == ''){
       this.image = './../../../assets/images/another/nest-img.png';
-      pokemons= this.data_pokemons.pokemons_borrador;
+      pokemons = this.data_pokemons.pokemons_borrador;
       this.searchActive = false;
     }else{
       this.data_pokemons.pokemons = [];
       this.data_pokemons.pokemons_borrador_search.forEach(element => {
-        if(element['name'].substr(0,this.nombrePokemon.length) == this.nombrePokemon.toLowerCase()){
+        if(element['name'].substr(0,this.selectPokemon.name.length) == this.selectPokemon.name.toLowerCase()){
           pokemons.push(element);
         }
       });
@@ -50,10 +56,7 @@ export class NestFormComponent implements OnInit {
   public resetVariables(){
     this.image = './../../../assets/images/another/nest-img.png';
     this.placeholder = 'Ingrese nombre';
-    this.nombrePokemon = '';
-    this.idPokemon = '';
-    this.lat = '';
-    this.lon = '';
+    this.selectPokemon = new NestPokemon();
   }
 
   public changeImage(img){
@@ -63,25 +66,18 @@ export class NestFormComponent implements OnInit {
   }
 
   public changeText(pokemon){
-      this.image = pokemon['img'];
-      this.nombrePokemon = pokemon['name'];
-      this.idPokemon = pokemon['id'];
+      this.selectPokemon.img = pokemon['img'];
+      this.selectPokemon.name = pokemon['name'];
+      this.selectPokemon.id = pokemon['id'];
   }
 
   public saveDate(date_from,date_to){
     this.data_pokemons.date_borrador = {'date_from': date_from, 'date_to': date_to}
   }
 
-  public saveNest(){
-    this.data_pokemons.nest_borrador.push({
-      'id': this.idPokemon,
-      'name': this.nombrePokemon,
-      'image': this.image,
-      'lon': this.lon,
-      'lat': this.lat
-    });
+  public saveNest(nestPokemon: NestPokemon){
+    this.nestServices.addNest(nestPokemon);
     this.resetVariables();
-    this.data_pokemons.nest_actuales = this.data_pokemons.nest_borrador;
   }
 
 }

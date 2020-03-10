@@ -23,7 +23,6 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { GenerationComponent } from './pages/generation/generation.component';
 import { NestComponent } from './pages/nest/nest.component';
 import { GaleryComponent } from './shared/galery/galery.component';
-import { ComponentsComponent } from './user/components/components.component';
 import { PokemonComponent } from './shared/pokemon/pokemon.component';
 
 
@@ -43,7 +42,6 @@ import { DatesPipe } from './user/pipes/dates.pipe';
     GenerationComponent,
     NestComponent,
     GaleryComponent,
-    ComponentsComponent,
     ControlPanelComponent,
     MapComponent,
     NestFormComponent,

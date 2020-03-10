@@ -19,28 +19,28 @@
             <img src="{{image}}" class="img-fluid">
         </div>
     </div>
-    <div class="col-md-6 my-2 form-group">
+    <div class="col-md-6 my-2 form-group" >
         <label for="name">Nombre pokemon:</label>
-        <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" type="" placeholder="{{placeholder}}" name="nombrePokemon" autocomplete="off">
+        <input [(ngModel)]="selectPokemon.name" (keyup)="buscarPokemon()" type="" placeholder="{{placeholder}}" name="selectPokemon.name" autocomplete="off">
         <div *ngIf="searchActive" class="search">
-            <button class="row col-md-12 m-0" *ngFor="let pokemon of data_pokemons.pokemons" (click)="changeImage(pokemon['img'])" (mouseover)="changeText(pokemon)">
+            <button class="row col-md-12 m-0" *ngFor="let pokemon of data_pokemons.pokemons" (click)="changeImage(pokemon.img)" (mouseover)="changeText(pokemon)">
                 <img src="{{pokemon['img']}}" class="col-md-4">
                 <div class="col-md-8">
-                    <p>{{pokemon['name']}}</p>
+                    <p>{{pokemon.name}}</p>
                 </div>
             </button>
         </div>
     </div>
     <div class="col-md-6 my-2 form-group">
         <label for="lat">Latitud:</label>
-        <input [(ngModel)]="lat" type="" class="form-control" id="lat" placeholder="Ingresar latitud" name="lat">
+        <input [(ngModel)]="selectPokemon.lat" type="" class="form-control" id="lat" placeholder="Ingresar latitud" name="lat">
     </div>
     <div class="col-md-6 my-2 form-group">
         <label for="lon">Longitud:</label>
-        <input [(ngModel)]="lon" type="" class="form-control" id="lon" placeholder="Ingresar longitud" name="lon">
+        <input [(ngModel)]="selectPokemon.lng" type="" class="form-control" id="lon" placeholder="Ingresar longitud" name="lon">
     </div>
 
     <div class="col-md-12 my-5 d-flex justify-content-end">
-        <input class="mx-2" type="submit" (click)="saveNest()">
+        <input class="mx-2" type="submit" (click)="saveNest(selectPokemon)">
     </div>
 </form>

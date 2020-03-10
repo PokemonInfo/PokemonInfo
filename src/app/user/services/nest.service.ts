@@ -17,23 +17,20 @@ export class NestService {
   }
 
   public addNest(nest){
-    this.nests.push({
-      "id": nest.id,
-      "lat": nest.lat,
-      "lng": nest.lng,
-    });
+    this.nests.push(nest);
   }
 
-  public updateNest(nest){
-    this.nests.update(nest.id,{
-      "id": nest.id,
-      "lat": nest.lat,
-      "lng": nest.lng,
-    })
+
+  public edit(key,nest){
+    
   }
 
-  public deleteNest(id){
-    this.nests.remove(id)
+  public removeAll(){
+    this.nests.remove()
+  }
+
+  public deleteNest(key){
+    this.nests.remove(key)
   }
 
 
