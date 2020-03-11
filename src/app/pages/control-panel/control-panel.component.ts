@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/user/services/data.service';
+import { NestService } from 'src/app/user/services/nest.service'
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-control-panel',
@@ -9,30 +11,31 @@ import { DataService } from 'src/app/user/services/data.service';
 })
 export class ControlPanelComponent implements OnInit {
 
+  nests = [];
 
-  constructor(private data_pokemons: DataService) { }
+  constructor(private nest_service: NestService) {
+   }
 
   ngOnInit() {
+    let myPokemon;
+    this.nest_service.getNests().snapshotChanges().subscribe(data =>{
+      this.nests = [];
+      data.forEach(pokemon => {
+        myPokemon = pokemon.payload.val();
+        myPokemon["$key"] = pokemon.key;
+        this.nests.push(myPokemon)
+      });
+    });
+
   }
 
-  public delete(index){
-    this.data_pokemons.nest_borrador.splice((index),1);
+  public delete($key){
+    this.nest_service.deleteNest($key)
+    
   }
 
-  public removeAll(current_nest){
-    this.data_pokemons.nest_actuales = [];
-    this.data_pokemons.nest_borrador = [];
-    this.data_pokemons.date_actual = [];
-    this.data_pokemons.date_borrador = [];
-    console.log(this.data_pokemons.date_actual);
-    console.log(this.data_pokemons.nest_actuales);
-  }
-
-  public saveAll(current_nest){
-    this.data_pokemons.date_actual = this.data_pokemons.date_borrador;
-    this.data_pokemons.nest_actuales = this.data_pokemons.nest_borrador;
-    console.log(this.data_pokemons.date_actual);
-    console.log(this.data_pokemons.nest_actuales);
+  public removeAll(){
+    this.nest_service.removeAll();
   }
 
 }
