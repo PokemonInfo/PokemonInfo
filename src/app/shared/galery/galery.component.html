@@ -1,6 +1,6 @@
 <div class="row galeria">
     <a class="col-4 col-md-2 justify-content-start text-center" *ngFor="let pokemon of data_pokemons.pokemons; " >
-        <div (click)="openDialog(pokemon['id'])">
+        <div (click)="openDialog(pokemon.id)">
             <img src="{{pokemon['img']}}" class="col-12 img-fluid">
             <p clase="text-center">{{pokemon['name']}}</p>
         </div>

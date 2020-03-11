@@ -1,21 +1,23 @@
-<div  mat-dialog-content *ngIf="pokemon_info">
+<div  mat-dialog-content *ngIf="pokemonService.pokemon as pokemon">
     <div class="row d-flex justify-content-center">
-        <div id="pokemon" class="marco col-md-5 col-12 p-1 m-1">
+        <div id="pokemon.id" class="marco col-md-5 col-12 p-1 m-1">
             <mat-icon class="col-md-12 p-1 close-cell" (click)="onNoClick()">close</mat-icon>
-            <a id="button-shiny" *ngIf="pokemon_info['sprites']['front_shiny']" class="col-md-12 p-0 m-0 d-flex justify-content-end">
+            <a id="button-shiny" class="col-md-12 p-0 m-0 d-flex justify-content-end">
                 <div (click)="changeImage()">{{change_shiny}}</div>
             </a>
             <div class="col-md-12 d-flex justify-content-center">
-                <img id="img-default" src="{{image_pokemon}}">
-                <img id="img-default-mobile" src="{{image_pokemon}}" (click)="changeImage()">
+                <img id="img-default" class="image_default" src="{{pokemon.image_default}}">
+                <img id="img-default" class="image_shiny" src="{{pokemon.image_shiny}}">
+                <img id="img-default-mobile" src="{{pokemon.image_default}}" (click)="changeImage()">
+                <img id="img-default-mobile" src="{{pokemon.image_shiny}}" (click)="changeImage()">
             </div>
         </div>
         <div class="col-md-5 col-12 row align-items-end p-1 m-1">
             <mat-icon class="col-md-12 close" (click)="onNoClick()">close</mat-icon>
             <div class="col-12 nombre">
-                <h4 class="text-center">{{pokemon_info['name']}}</h4>
+                <h4 class="text-center">{{pokemon.name}}</h4>
                 <div class="col-12 d-flex justify-content-center">
-                    <img *ngFor="let type of types" src="../../assets/images/{{type}}.png">
+                    <img *ngFor="let type of pokemon.type.types" src="../../assets/images/{{type}}.png">
                 </div>
             </div> 
         </div>
@@ -24,10 +26,10 @@
         <div class="tabla col-12 col-md-5 p-1 m-1">
             <h5 class="col-12 text-center"> Resistencias </h5>   
             <div class="col-12 px-4 m-1"> 
-                <div class="row m-1 text-center" *ngFor="let resistencia of resistencias" >
-                   <p class="col-2">{{resistencia['count']}}x</p>
+                <div class="row m-1 text-center" *ngFor="let resistencia of pokemon.type.resistencias" >
+                   <p class="col-2">{{resistencia.count}}x</p>
                    <div class="col-2">  
-                        <img src="../../assets/images/{{resistencia['type']}}.png" >
+                        <img src="../../assets/images/{{resistencia.type}}.png" >
                     </div>
                 </div>   
             </div>
@@ -35,10 +37,10 @@
         <div class="tabla col-12 col-md-5 p-1 m-1">
             <h5 class="col-12 text-center"> Debilidades </h5>
             <div class="col-12 px-4 m-1">    
-                <div class="row m-1" *ngFor="let debilidad of debilidades" >
-                    <p class="col-2">{{debilidad['count']}}x</p>
+                <div class="row m-1" *ngFor="let debilidad of pokemon.type.debilidades" >
+                    <p class="col-2">{{debilidad.count}}x</p>
                     <div class="col-2">
-                        <img src="../../assets/images/{{debilidad['type']}}.png">
+                        <img src="../../assets/images/{{debilidad.type}}.png">
                     </div>
                 </div>  
             </div>
@@ -48,11 +50,13 @@
         <p class="text-center">Cadena evolutiva</p>
     </div>
     <div class="galeria cadena-evolutiva col-12 row my-2 px-4">
-        <a class="col-md-4 col-12" *ngFor="let evolucion of pokemon_info['evolution_chain']">
-            <div (click)="change_pokemon(evolucion['id'])">
-                <img src="{{evolucion['img']}}" class="col-12 img-fluid">
-                <p clase="col-md-12 name-evolution text-center">{{evolucion['name']}}</p>
+        <a class="col-md-4 col-12" *ngFor="let evolucion of pokemon.evolutions">
+            <div (click)="change_pokemon(evolucion.id)">
+                <img src="{{evolucion.img}}" class="col-12 img-fluid">
+                <p clase="col-md-12 name-evolution text-center">{{evolucion.name}}</p>
             </div>
         </a>
     </div>
 </div>
+
+

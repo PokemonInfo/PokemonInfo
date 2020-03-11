@@ -19,6 +19,15 @@
     background-color: white;
 }
 
+.image_default{
+    display: block;
+}
+
+
+.image_shiny{
+    display: none;
+}
+
 #img-default-mobile{
     display: none;
 }
