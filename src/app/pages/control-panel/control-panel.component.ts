@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from 'src/app/user/services/data.service';
 import { NestService } from 'src/app/user/services/nest.service'
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-control-panel',

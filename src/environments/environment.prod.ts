@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: "1005628509086",
     appId: "1:1005628509086:web:8be6ddddfc0b265c42648f",
     measurementId: "G-VRJW06J5MP"
-  }
+  },
+  maxboxKey : "pk.eyJ1IjoiY2FtaWxhY2F0YWxpbmkiLCJhIjoiY2s3bnRmZ214MDI4YjNtcDYzdjB5MG05NSJ9.V8Jwui60TwGr_9FdE4qCUA",
 };
