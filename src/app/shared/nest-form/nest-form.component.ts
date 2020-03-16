@@ -17,35 +17,28 @@ export class NestFormComponent implements OnInit {
   date_from = '';
   date_to = '';
 
-  /*nombrePokemon = '';
-  idPokemon = '';
-  lat = '';
-  lon = '';*/
 
   searchActive : boolean = false;
-  image : string = './../../../assets/images/another/nest-img.png';
   placeholder : string = 'Ingrese nombre';
   nest : Array<NestPokemon>;
-  selectPokemon : NestPokemon;
 
   constructor(private data_pokemons: DataService, private nestServices:NestService ) { }
-
+    
   ngOnInit() {
-    this.selectPokemon = new NestPokemon();
+    this.data_pokemons.selectPokemon = new NestPokemon();
   }
 
 
   public buscarPokemon(){
     this.searchActive = true;
     let pokemons = [];
-    if(this.selectPokemon.name == ''){
-      this.image = './../../../assets/images/another/nest-img.png';
+    if(this.data_pokemons.selectPokemon.name == ''){
       pokemons = this.data_pokemons.pokemons_borrador;
       this.searchActive = false;
     }else{
       this.data_pokemons.pokemons = [];
       this.data_pokemons.pokemons_borrador_search.forEach(element => {
-        if(element['name'].substr(0,this.selectPokemon.name.length) == this.selectPokemon.name.toLowerCase()){
+        if(element['name'].substr(0,this.data_pokemons.selectPokemon.name.length) == this.data_pokemons.selectPokemon.name.toLowerCase()){
           pokemons.push(element);
         }
       });
@@ -54,21 +47,19 @@ export class NestFormComponent implements OnInit {
   }
 
   public resetVariables(){
-    this.image = './../../../assets/images/another/nest-img.png';
-    this.placeholder = 'Ingrese nombre';
-    this.selectPokemon = new NestPokemon();
+    /*this.placeholder = 'Ingrese nombre';*/
+    this.data_pokemons.selectPokemon = new NestPokemon();
   }
 
   public changeImage(img){
-    this.image = img;
     this.data_pokemons.pokemons = [];
     this.searchActive = false;
   }
 
   public changeText(pokemon){
-      this.selectPokemon.img = pokemon['img'];
-      this.selectPokemon.name = pokemon['name'];
-      this.selectPokemon.id = pokemon['id'];
+      this.data_pokemons.selectPokemon.img = pokemon['img'];
+      this.data_pokemons.selectPokemon.name = pokemon['name'];
+      this.data_pokemons.selectPokemon.id = pokemon['id'];
   }
 
   public saveDate(date_from,date_to){
@@ -76,7 +67,11 @@ export class NestFormComponent implements OnInit {
   }
 
   public saveNest(nestPokemon: NestPokemon){
-    this.nestServices.addNest(nestPokemon);
+    if(nestPokemon['$key'] != null){
+      this.nestServices.edit(nestPokemon['$key'],nestPokemon);
+    }else{
+      this.nestServices.addNest(nestPokemon); 
+    }
     this.resetVariables();
   }
 

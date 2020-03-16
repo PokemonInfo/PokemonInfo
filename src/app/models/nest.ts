@@ -1,3 +1,4 @@
+
 export class NestPokemon{
     id:string;
     name:string;
@@ -8,7 +9,7 @@ export class NestPokemon{
     public constructor(){
         this.id   = '';
         this.name = '';
-        this.img  = '';
+        this.img  = 'assets/images/another/nest-img.png';
         this.lat  = '';
         this.lng  = '';
     }

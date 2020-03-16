@@ -22,7 +22,13 @@ export class NestService {
 
 
   public edit(key,nest){
-    
+    this.nests.update(key,{
+      id   : nest.id,
+      name : nest.name,
+      img  : nest.img,
+      lat  : nest.lat,
+      lng  : nest.lng
+    });
   }
 
   public removeAll(){

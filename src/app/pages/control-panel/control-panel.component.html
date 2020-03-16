@@ -7,10 +7,12 @@
         <div class="col-md-8 row galeria-nido">
             <div class="col-3 col-md-12" *ngFor="let nest of nests">
                 <div class="pokemon m-1 row">
-                    <p clase="text-center col-3">{{nest.name}}</p>
+                    <p clase="text-center col-12">{{nest.name}}</p>
+                    <p>lat -> {{nest.lat}}</p>
+                    <p>lng -> {{nest.lng}}</p>
                     <img src="{{nest.img}}" class="img-fluid col-6" alt="">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button class="m-1 edit" (click)="edit(1)">editar</button>
+                        <button class="m-1 edit" (click)="edit(nest)">editar</button>
                         <button class="m-1 delete" (click)="delete(nest.$key)">eliminar</button>
                     </div>
                 </div>
@@ -23,7 +25,4 @@
     <div class="col-md-4">
         <app-nest-form></app-nest-form>
     </div>
-    <!--<div class="col-md-4">
-        <app-map></app-map>
-    </div>-->
 </div>
