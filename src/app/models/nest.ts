@@ -13,4 +13,12 @@ export class NestPokemon{
         this.lat  = '';
         this.lng  = '';
     }
+
+    public setNest(data){
+        this.id   = data.id;
+        this.name = data.name;
+        this.img  = data.image;
+        this.lat  = data.lat;
+        this.lng  = data.lng;
+    }
 }

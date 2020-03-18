@@ -29,9 +29,9 @@ import { PokemonComponent } from './shared/pokemon/pokemon.component';
 import { NestService } from './user/services/nest.service';
 
 import { ControlPanelComponent } from './pages/control-panel/control-panel.component';
-import { MapComponent } from './shared/map/map.component';
 import { NestFormComponent } from './shared/nest-form/nest-form.component';
 import { DatesPipe } from './user/pipes/dates.pipe';
+import { MapBoxComponent } from './shared/map-box/map-box.component';
 
 
 @NgModule({
@@ -43,9 +43,9 @@ import { DatesPipe } from './user/pipes/dates.pipe';
     NestComponent,
     GaleryComponent,
     ControlPanelComponent,
-    MapComponent,
     NestFormComponent,
     DatesPipe,
+    MapBoxComponent,
   ],
   imports: [
     BrowserModule,
