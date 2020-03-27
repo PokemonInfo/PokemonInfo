@@ -1,49 +1,54 @@
-<ng-container *ngIf="data_pokemons.selectPokemon as selectPokemon" >
-    <form class="row nest-form" action="/action_page.php">
-    <div class="col-md-12 my-3 row d-flex justify-content-start">
-            <label class="col-md-12" for="party">Fecha de migración:</label>
-            <div class="row col-md-10 my-1">
-                <p class="col-md-2 mx-1">Del:</p> 
-                <input [(ngModel)]="date_from" class="col-md-8" type="date" id="party" name="date_from" required>
+<!-- -->
+<div class="row">
+    <ng-container *ngIf="data_pokemons.selectPokemon as selectPokemon">
+        <form class="col-12 col-md-5">
+            <p class="col-12 d-flex justify-content-center">Fecha de migración:</p>
+            <div class="form-group">
+                <label>Del:</label>
+                <input [(ngModel)]="date_from" class="form-control" type="date" id="party" name="date_from" required>
             </div>
-            <div class="row col-md-10 my-1">
-                <p class="col-md-2 mx-1">Al:</p> 
-                <input [(ngModel)]="date_to" class="col-md-8" type="date" id="party" name="date_to" required>
+            <div class="form-group">
+                <label>Al:</label> 
+                <input [(ngModel)]="date_to" class="form-control" type="date" id="party" name="date_to" required>
             </div>
-            <span class="validity"></span>
-            <div class="col-md-2 my-2 d-flex justify-content-end">
-                <input type="submit" (click)="saveDate(date_from,date_to)">
+            <div class="col-12 p-0 d-flex justify-content-end">
+                <button class="btn btn-success btn-sm " (click)="saveDate(date_from,date_to)">Guardar Fecha</button>
             </div>
-        </div>
-        
-        <div class="col-md-6 my-2">
-            <div class="col-md-12 d-flex justify-content-center">
+            <hr>
+            <div class="col-12 d-flex justify-content-center my-2" style="height:96px">
                 <img src="{{selectPokemon.img}}" class="img-fluid">
             </div>
-        </div>
-        <div class="col-md-6 my-2 form-group" >
-            <label for="name">Nombre pokemon:</label>
-            <input [(ngModel)]="selectPokemon.name" (keyup)="buscarPokemon()" type="" placeholder="{{placeholder}}" name="selectPokemon.name" autocomplete="off">
-            <div *ngIf="searchActive" class="search">
-                <button class="row col-md-12 m-0" *ngFor="let pokemon of data_pokemons.pokemons" (click)="changeImage(pokemon.img)" (mouseover)="changeText(pokemon)">
-                    <img src="{{pokemon['img']}}" class="col-md-4">
-                    <div class="col-md-8">
-                        <p>{{pokemon.name}}</p>
-                    </div>
-                </button>
+            <div class="col-12" >
+                <div class="form-group">
+                        <input class="form-control" [(ngModel)]="selectPokemon.name" (keyup)="buscarPokemon()" type="text" placeholder="{{placeholder}}" name="selectPokemon.name" autocomplete="off">
+                </div>
+                <div *ngIf="searchActive" class="search row"  >
+                    <ng-container *ngFor="let pokemon of data_pokemons.pokemons">
+                        <div class="col-12"  (click)="changeImage(pokemon.img)" (mouseover)="changeText(pokemon)">
+                            <img src="{{pokemon['img']}}" class="col-md-4 img-fluid" >
+                            <p>{{pokemon.name}}</p>
+                        </div>
+                    </ng-container> 
+                </div>
             </div>
-        </div>
-        <div class="col-md-6 my-2 form-group">
-            <label for="lat">Latitud:</label>
-            <input [(ngModel)]="selectPokemon.lat" type="" class="form-control" id="lat" placeholder="Ingresar latitud" name="lat">
-        </div>
-        <div class="col-md-6 my-2 form-group">
-            <label for="lon">Longitud:</label>
-            <input [(ngModel)]="selectPokemon.lng" type="" class="form-control" id="lon" placeholder="Ingresar longitud" name="lon">
-        </div>
+            <div class="col-12 form-group">
+                <!--<label for="lat">Latitud:</label>-->
+                <input [(ngModel)]="selectPokemon.lat" type="text" class="form-control" id="lat" placeholder="Latitud" name="lat" disabled>
+            </div>
+            <div class="col-12 form-group">
+                <!--<label for="lng">Longitud:</label>-->
+                <input [(ngModel)]="selectPokemon.lng" type="text" class="form-control" id="lon" placeholder="Longitud" name="lon" disabled>
+            </div>
 
-        <div class="col-md-12 my-5 d-flex justify-content-end">
-            <input class="mx-2" type="submit" (click)="saveNest(selectPokemon)">
-        </div>
-    </form>
-</ng-container>
+            <div class="col-12 d-flex justify-content-end" >
+                <button class="btn btn-info btn-sm col-md-4 mr-2" (click)="resetVariables()">Reset</button>
+                <button class="btn btn-success btn-sm col-md-4" (click)="saveNest(selectPokemon)">Guardar</button>
+            </div>
+        </form> 
+    
+        <!--<div>-->
+            <div id="map" class="col-12 col-md-7 mt-2 mx-0 px-0" ></div>
+        <!--</div>-->
+    </ng-container>
+</div>
+<!---->

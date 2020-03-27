@@ -14,12 +14,7 @@ export class MapBoxComponent implements OnInit {
 
   map: Mapboxgl.Map;
 
-  nest = {
-    'name': 'Eevee',
-    'img': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',
-    'lng': -57.957912,
-    'lat': -34.9238185,
-  };
+
 
   constructor(private nest_service: NestService) { }
 
@@ -29,10 +24,10 @@ export class MapBoxComponent implements OnInit {
   }
 
   private initializeMap(){
-    Mapboxgl.accessToken = environment.maxboxKey;
     this.map = new Mapboxgl.Map({
       container: 'map-box', // container id
       style: 'mapbox://styles/mapbox/streets-v11',
+      accessToken : environment.maxboxKey,
       center: [-57.954604, -34.921328], // lng,lat starting position
       zoom: 12 // starting zoom
     });

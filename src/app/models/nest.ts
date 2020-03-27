@@ -3,8 +3,8 @@ export class NestPokemon{
     id:string;
     name:string;
     img:string;
-    lat:string;
-    lng:string;
+    lat?:string;
+    lng?:string;
 
     public constructor(){
         this.id   = '';
