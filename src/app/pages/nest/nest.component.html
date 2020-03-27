@@ -1,18 +1,26 @@
 <div id="nido" class="row d-flex justify-content-center">
-    <div class="col-md-12 d-flex justify-content-center">
+    <div class="col-md-12 col-12 d-flex justify-content-center">
         <p class="col-md-6 col-8 my-4 p-2 fondo text-center">Migracion de nidos del 20/02/2020 al 04/02/2020</p>
     </div>
-    <div class="row col-md-6 col-12 justify-content-between galeria-nido">
-        <div class="row p-3">
-            <a class="col-3 col-md-6 d-flex justify-content-center text-center" *ngFor="let nest of nests">
-                <div >
-                    <img src="{{nest.img}}" class="col-12 img-fluid">
+    <div class="row col-md-6 col-12 justify-content-between galery_nest">
+        <div class="row p-3 m-1">
+            <a class="col-3 col-md-6 d-flex justify-content-center text-center xxx" *ngFor="let nest of nests" (click)="zoomMap(nest.lng, nest.lat)">
+                <div>
+                    <img src="{{nest.img}}">
                     <p clase="text-center">{{nest.name}}</p>
                 </div>
             </a>
         </div>
     </div>
-    <div class="col-md-6 col-12 mx-3">
-        <app-map-box></app-map-box>
+    <div class="nest col-12 row my-2 px-4">
+        <a class="col-md-4 col-3 d-flex justify-content-center" *ngFor="let nest of nests">
+            <div (click)="zoomMap(nest.lng, nest.lat)">
+                <img src="{{nest.img}}" class="img-fluid">
+                <p clase="col-12 text-center name-nest">{{nest.name}}</p>
+            </div>
+        </a>
+    </div> 
+    <div class="col-md-6 col-12 mx-3 map-box">
+        <app-map-box (zoom)="zoomMap($event)"></app-map-box>
     </div>
 </div>

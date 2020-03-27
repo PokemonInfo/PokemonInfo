@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     let gen = $(location).attr('pathname');
     if(gen == '/'){gen = '/generacion/1';}
+    this.getPokemons(0,649,true); 
     if(gen == '/control-panel' || gen == '/nidos'){
       this.getPokemons(0,649,true); 
     }else{
@@ -79,10 +80,11 @@ export class MenuComponent implements OnInit {
     let pokemons = [];
 
     if(this.nombrePokemon == ''){
-      pokemons= this.data_pokemons.pokemons_borrador;
+      pokemons = this.data_pokemons.pokemons_borrador;
     }else{
       this.data_pokemons.pokemons = [];
       this.data_pokemons.pokemons_borrador_search.forEach(element => {
+        
         if(element['name'].substr(0,this.nombrePokemon.length) == this.nombrePokemon.toLowerCase()){
           pokemons.push(element);
         }
