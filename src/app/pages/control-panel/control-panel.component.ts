@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NestService } from 'src/app/user/services/nest.service'
+import { DataService } from 'src/app/user/services/data.service';
+import { NestService } from 'src/app/user/services/nest.service';
 
 @Component({
   selector: 'app-control-panel',
@@ -11,7 +12,7 @@ export class ControlPanelComponent implements OnInit {
 
   nests = [];
 
-  constructor(private nest_service: NestService) {
+  constructor(private nest_service: NestService,private data_pokemons: DataService) {
    }
 
   ngOnInit() {
@@ -34,6 +35,10 @@ export class ControlPanelComponent implements OnInit {
 
   public removeAll(){
     this.nest_service.removeAll();
+  }
+
+  public edit(nest){
+    this.data_pokemons.selectPokemon = nest;
   }
 
 }
