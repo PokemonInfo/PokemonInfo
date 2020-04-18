@@ -14,9 +14,9 @@ export class MapBoxService {
   constructor() { }
 
   public initializeMap(){
-    Mapboxgl.accessToken = environment.maxboxKey;
     this.map = new Mapboxgl.Map({
       container: 'map-box', // container id
+      accessToken : environment.maxboxKey,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-57.954604, -34.921328], // lng,lat starting position
       zoom: 12 // starting zoom
