@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 
 import { DataService } from 'src/app/user/services/data.service';

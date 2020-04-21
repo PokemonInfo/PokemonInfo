@@ -1,19 +1,19 @@
 <div class="menu">
     <nav class="navbar navbar-dark py-1 d-flex justify-content-around">
-        <div class="logo col-md-2" routerLink="generacion/1" (click)="loadGeneration(1)">
+        <div class="logo col-md-2" routerLink="generacion/1" routerLinkActive="active">
             <img class="img-fluid" src="../../assets/images/logo/logo.png">
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <button class="col-2 m-1 p-2" routerLink="generacion/1" (click)="loadGeneration('/generacion/1')">1.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/2" (click)="loadGeneration('/generacion/2')">2.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/3" (click)="loadGeneration('/generacion/3')">3.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/4" (click)="loadGeneration('/generacion/4')">4.ª Gen.</button>
-            <button class="col-2 m-1 p-2" routerLink="generacion/5" (click)="loadGeneration('/generacion/5')">5.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="/generacion/1" routerLinkActive="active">1.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/2" routerLinkActive="active">2.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/3" routerLinkActive="active">3.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/4" routerLinkActive="active">4.ª Gen.</button>
+            <button class="col-2 m-1 p-2" routerLink="generacion/5" routerLinkActive="active">5.ª Gen.</button>
             <button class="col-2 m-1 p-2" routerLink="/nido/la-plata">Nidos</button>
         </div>
         <div class="col-8 col-md-3">
             <form class="row form-inline">
-                <input [(ngModel)]="nombrePokemon" (keyup)="buscarPokemon()" (search)="clear()" class="search-input" class="col-md-10 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
+                <input #namePokemon (keyup)="buscarPokemon(namePokemon.value)" (search)="clear()" class="search-input" class="col-md-10 mx-1 form-control " type="search" name="nombrePokemon" aria-label="Search">
                 <mat-icon class="col-md-1">search</mat-icon>
             </form>
         </div>

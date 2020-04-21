@@ -32,6 +32,7 @@ import { ControlPanelComponent } from './pages/control-panel/control-panel.compo
 import { NestFormComponent } from './shared/nest-form/nest-form.component';
 import { DatesPipe } from './user/pipes/dates.pipe';
 import { MapBoxComponent } from './shared/map-box/map-box.component';
+import { CardPokemonComponent } from './shared/galery/components/card-pokemon/card-pokemon.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MapBoxComponent } from './shared/map-box/map-box.component';
     NestFormComponent,
     DatesPipe,
     MapBoxComponent,
+    CardPokemonComponent,
   ],
   imports: [
     BrowserModule,

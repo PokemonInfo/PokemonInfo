@@ -2,7 +2,7 @@
     transition: .5s;
   }
     
-  .galeria a:hover {
+  .galeria div:hover {
     box-shadow: 0 0 12px 8px #29468f;
     /*background: rgb(243, 243, 235);*/
   }

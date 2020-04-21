@@ -13,84 +13,18 @@ import * as $ from 'jquery';
 })
 export class MenuComponent implements OnInit {
 
-  generation: string;
-  nombrePokemon = '';
-  generations = {'/generacion/1': {'inicio': 0,'fin': 151},
-                  '/generacion/2': {'inicio': 151,'fin': 100},
-                  '/generacion/3': {'inicio': 251,'fin': 135},
-                  '/generacion/4': {'inicio': 386,'fin': 107},
-                  '/generacion/5': {'inicio': 493,'fin': 156},};
+  search$ = this.data_pokemons.search$
 
   constructor(public data: GenerationComponent,
               private data_pokemons: DataService,
               private pokemonApi: PokemonApiService) { }
 
   ngOnInit() {
-    let gen = $(location).attr('pathname');
-    if(gen == '/'){gen = '/generacion/1';}
-    this.getPokemons(0,649,true); 
-    if(gen == '/control-panel' || gen == '/nidos'){
-      this.getPokemons(0,649,true); 
-    }else{
-      this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
-    }
   }
 
-  public loadGeneration(gen){
-    this.getPokemons(this.generations[gen]['inicio'],this.generations[gen]['fin'],false); 
-  }
-
-  private getPokemons(offset,limit,search){
-    let pokemons = [];
-    this.data_pokemons.pokemons = [];
-    this.pokemonApi.getPokemons(offset,limit).subscribe(
-      data =>{
-        data['results'].forEach(
-          element => {
-            pokemons.push({'name': element['name'],'url': element['url']})
-          });
-      },
-      err => {},
-      () =>{
-          pokemons.forEach(pokemon => {
-            this.pokemonApi.getPokemonSpecie(pokemon['url']).subscribe(data =>{
-               pokemon.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data['id'] + ".png" 
-               pokemon.id  = data['id']
-              },
-              err => {},
-              () => {
-                if(search){
-                  this.data_pokemons.pokemons_borrador_search = pokemons;
-                }else{
-                  this.data_pokemons.pokemons = pokemons;
-                  this.data_pokemons.pokemons_borrador = pokemons;
-                }
-            }
-          )}
-      )}
-    )
-  }
-
-  public clear(){
-    this.nombrePokemon = '';
-    this.buscarPokemon();
-  }
-
-  public buscarPokemon(){
-    let pokemons = [];
-
-    if(this.nombrePokemon == ''){
-      pokemons = this.data_pokemons.pokemons_borrador;
-    }else{
-      this.data_pokemons.pokemons = [];
-      this.data_pokemons.pokemons_borrador_search.forEach(element => {
-        
-        if(element['name'].substr(0,this.nombrePokemon.length) == this.nombrePokemon.toLowerCase()){
-          pokemons.push(element);
-        }
-      });
-    }
-    this.data_pokemons.pokemons = pokemons;
+  public buscarPokemon(name){
+    const search = name == "" ? false : true
+    this.data_pokemons.changeSearch({isSearch:search,text:name})
   }
 
 }
