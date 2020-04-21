@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { PokemonComponent } from './../pokemon/pokemon.component';
 import { MatDialog} from '@angular/material';
 
@@ -40,7 +40,6 @@ export class GaleryComponent implements OnInit {
       )
 
     })
-
 
     this.route.params.subscribe(params => {
       const offset = this.generations[params['gen']]['inicio']
