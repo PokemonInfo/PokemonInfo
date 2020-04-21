@@ -1,4 +1,4 @@
 <div>
-    <img src="{{imgUrl}}" class="col-12 img-fluid">
+    <img id="imgPokemon" [src]=imgUrl (error)="hadlError($event)" class="col-12 img-fluid">
     <p clase="text-center">{{name}}</p>
 </div>

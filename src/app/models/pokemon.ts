@@ -21,7 +21,6 @@ export class Pokemon{
     sta?:number;
 
     constructor(id,pokemon_info, private pokemonApi:PokemonApiService){
-      console.log(pokemon_info.stats)
         this.id = id;
         this.setName(pokemon_info);
         this.setTypes(pokemon_info);
@@ -39,7 +38,7 @@ export class Pokemon{
         this.setStatesGame()
     }
 
-    private setBaseStates(sta=45,atk=49,def=49,sAtk=65,sDef=65,speed=45){
+    private setBaseStates(sta,atk,def,sAtk,sDef,speed){
       this.base_atk = atk;
       this.base_def = def;
       this.base_special_atk = sAtk;
@@ -49,10 +48,21 @@ export class Pokemon{
     };
 
     private setStatesGame(){
-      this.sta = formulas.default.calculateHp(this.base_sta);
-      this.atk = formulas.default.CalculateAtk(this.base_atk,this.base_special_atk,this.base_speed);
-      this.def = formulas.default.CalculateDef(this.base_def,this.base_special_def,this.base_speed);
-      this.maxPc = formulas.default.CalculateCombatPower(this,40,{atk: 15, def: 15, sta: 15})
+      this.sta = formulas.calculateHp(this.base_sta);
+      this.atk = formulas.CalculateAtk(this.base_atk,this.base_special_atk,this.base_speed);
+      this.def = formulas.CalculateDef(this.base_def,this.base_special_def,this.base_speed);
+      this.maxPc = this.calculateMaxPC()
+    }
+
+    private calculateMaxPC(){
+      let maxPc = formulas.CalculateCombatPower(this,40,{atk: 15, def: 15, sta: 15})
+      if(maxPc > 4000){
+        this.atk = formulas.NerfState(this.atk);
+        this.def = formulas.NerfState(this.def);
+        this.sta = formulas.NerfState(this.sta);
+        maxPc = formulas.CalculateCombatPower(this,40,{atk: 15, def: 15, sta: 15})
+      }
+      return maxPc
     }
 
     

@@ -23,6 +23,7 @@ export class MenuComponent implements OnInit {
   }
 
   public buscarPokemon(name){
+    console.log(name)
     const search = name == "" ? false : true
     this.data_pokemons.changeSearch({isSearch:search,text:name})
   }
